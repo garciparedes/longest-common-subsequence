@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
+
+\usepackage{hyperref}
+
+\usepackage{float}
+
+\delimitershortfall-1sp
+\newcommand\abs[1]{\left|#1\right|}
+
+
+\title{Algoritmo: Buscar el par de puntos mas cercano en espacio n-dimensional}
+\author{Sergio García Prado}
+
+
+\begin{document}
+
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE Universidad de Valladolid \par}
+	\vspace{1cm}
+	{\scshape\Large Programación Dinámica\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Subsecuencia Común Más Larga\par}
+	\vspace{2cm}
+	{\Large\itshape Sergio García Prado\par}
+	
+	\vfill
+	Seguimiento del trabajo en: \par
+	\href{https://github.com/garciparedes/Closest-Pair-of-Points}{github.com/garciparedes/Closest-Pair-of-Points}
+
+	\vfill
+
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+\section{Introducción}
+	
+	\subsection{Definición del problema}
+	
+		\paragraph{}
+		El problema analizado que se pretende resolver consiste en lo siguiente:
+		
+		\paragraph{}
+		Primeramente describiremos lo que es una subsecuencia, ya que es una de las ideas fundamentales que habrá que tener claro para resolver el problema y que no debemos confundir con subcadena.
+		
+		\paragraph{Subsecuencia:}
+		Es una secuencia que se obtiene a partir de otra secuencia de igual o mayor tamaño mediante la supresión de algunos elementos sin cambiar el orden de los elementos restantes. Por ejemplo, la secuencia A, D, F es una subsecuencia de A, B, C, D, E, F. 
+		\newline
+		No debe confundirse con el término subcadena, que además impone la restricción de que los elementos tienen que ser contiguos. Un ejemplo de subcadena es B, C, D.
+		
+		\paragraph{}
+		Ahora que ya tenemos clara la definición de subsecuencia modelizaremos el problema a resolver:
+		\newline
+		Dadas dos secuencias de carácteres, nuestro objetivo será encontrar la subsecuencia común de mayor longitud entre ambas. La longitud cada una de las cadenas puede ser distinta.
+
+	\subsection{Aplicaciones}
+		\paragraph{}
+		Este algoritmo tiene una gran cantidad de aplicaciones. Uno de los sectores donde su uso está más extendido es en el de la informática: se usa en software de control de versiones como git o el comando diff, que muestra las diferencias entre ficheros. También se utiliza en el sector de la bioinformática (Aplicación de tecnología de computadores a la gestión y análisis de datos biológicos.) para secuenciación de ADN.
+
+\section{Referencia Bibliográfica}
+
+	\begin{itemize}
+		\item \url{https://en.wikipedia.org/wiki/Subsequence}	
+		\item \url{https://en.wikipedia.org/wiki/Bioinformatics}	
+		
+		
+		
+	\end{itemize}
+
+\end{document}
