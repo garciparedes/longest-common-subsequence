@@ -2,3 +2,5 @@
 /app/build/
 /fileDiffApp/nbproject/private/
 /fileDiffApp/build/
+/fileDiffApp/dist/
+fileDiffApp/src/view/TextLineNumber.java
