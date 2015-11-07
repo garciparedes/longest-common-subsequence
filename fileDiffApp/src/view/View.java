@@ -15,8 +15,8 @@ public class View extends javax.swing.JFrame {
      * Creates new form View
      */
     public View() {
-        myInitComponents();
         initComponents();
+        myInitComponents();
     }
 
     /**
@@ -28,46 +28,62 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToolBar1 = new javax.swing.JToolBar();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
+        jToolBar = new javax.swing.JToolBar();
+        jButtonLoadFile1 = new javax.swing.JButton();
+        jButtonLoadFile2 = new javax.swing.JButton();
+        jLayeredPanelGrid = new javax.swing.JLayeredPane();
+        jScrollPaneLeft = new javax.swing.JScrollPane();
+        jTextPaneLeft = new javax.swing.JTextPane();
+        jScrollPaneRight = new javax.swing.JScrollPane();
+        jTextPaneRight = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(800, 480));
         setPreferredSize(new java.awt.Dimension(800, 480));
 
-        jToolBar1.setRollover(true);
+        jToolBar.setFloatable(false);
+        jToolBar.setRollover(true);
 
-        jLayeredPane1.setLayout(new java.awt.GridLayout(1, 2));
+        jButtonLoadFile1.setText("Load File1");
+        jButtonLoadFile1.setFocusable(false);
+        jButtonLoadFile1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLoadFile1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar.add(jButtonLoadFile1);
 
-        jScrollPane3.setViewportView(jTextPane3);
+        jButtonLoadFile2.setText("Load File2");
+        jButtonLoadFile2.setFocusable(false);
+        jButtonLoadFile2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonLoadFile2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar.add(jButtonLoadFile2);
 
-        jLayeredPane1.add(jScrollPane3);
+        jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 2));
 
-        jScrollPane4.setViewportView(jTextPane4);
+        jScrollPaneLeft.setViewportView(jTextPaneLeft);
 
-        jLayeredPane1.add(jScrollPane4);
+        jLayeredPanelGrid.add(jScrollPaneLeft);
+
+        jScrollPaneRight.setViewportView(jTextPaneRight);
+
+        jLayeredPanelGrid.add(jScrollPaneRight);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1)
+                .addComponent(jLayeredPanelGrid)
                 .addContainerGap())
         );
 
@@ -75,16 +91,24 @@ public class View extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JTextPane jTextPane4;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jButtonLoadFile1;
+    private javax.swing.JButton jButtonLoadFile2;
+    private javax.swing.JLayeredPane jLayeredPanelGrid;
+    private javax.swing.JScrollPane jScrollPaneLeft;
+    private javax.swing.JScrollPane jScrollPaneRight;
+    private javax.swing.JTextPane jTextPaneLeft;
+    private javax.swing.JTextPane jTextPaneRight;
+    private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
-
+    
+    private TextLineNumber textLineNumberLeft;
+    private TextLineNumber textLineNumberRight;
+    
     private void myInitComponents() {
         setLocationRelativeTo(null);
-        //setExtendedState(MAXIMIZED_BOTH);
+        textLineNumberLeft = new TextLineNumber(jTextPaneLeft);
+        textLineNumberRight = new TextLineNumber(jTextPaneRight);
+        jScrollPaneLeft.setRowHeaderView( textLineNumberLeft );
+        jScrollPaneRight.setRowHeaderView( textLineNumberRight );
     }
 }
