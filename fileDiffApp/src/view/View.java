@@ -160,28 +160,56 @@ public class View extends javax.swing.JFrame {
     }
 
     public void colorJTextAreaLeftText(int[] lcs) {
-        jTextAreaLeft.getHighlighter().removeAllHighlights();
-        for(int i = 0; i < lcs.length; i++){
-            try {
-                int a = jTextAreaLeft.getLineStartOffset(lcs[i]);
-                int b = jTextAreaLeft.getLineEndOffset(lcs[i]);
-                jTextAreaLeft.getHighlighter().addHighlight(a, b, greenHighLight);
-            } catch (BadLocationException ex) {
-                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        int a,b;
+        try {
+            jTextAreaLeft.getHighlighter().removeAllHighlights();
+            if (lcs.length >0){
+
+                for(int i = 0; i < lcs.length; i++){
+                    if (i>0 && lcs[i] > 0){
+                        a = jTextAreaLeft.getLineStartOffset(lcs[i-1]+1);
+                        b = jTextAreaLeft.getLineEndOffset(lcs[i]-1);
+                        jTextAreaLeft.getHighlighter().addHighlight(a, b, redPainter);
+
+                    }
+                    a = jTextAreaLeft.getLineStartOffset(lcs[i]);
+                    b = jTextAreaLeft.getLineEndOffset(lcs[i]);
+                    jTextAreaLeft.getHighlighter().addHighlight(a, b, greenHighLight);
+                }
+            } else if(!jTextAreaLeft.getText().isEmpty()){
+                jTextAreaLeft.getHighlighter()
+                        .addHighlight(0, jTextAreaLeft.getText().length()-1, redPainter);
             }
+        } catch (BadLocationException ex) {
+                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void colorJTextAreaRightText(int[] lcs) {
-        jTextAreaRight.getHighlighter().removeAllHighlights();
-        for(int i = 0; i < lcs.length; i++){
-            try {
-                int a = jTextAreaRight.getLineStartOffset(lcs[i]);
-                int b = jTextAreaRight.getLineEndOffset(lcs[i]);
-                jTextAreaRight.getHighlighter().addHighlight(a, b, greenHighLight);
-            } catch (BadLocationException ex) {
-                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+        int a,b;
+        
+        try {
+
+            jTextAreaRight.getHighlighter().removeAllHighlights();
+            if (lcs.length >0){
+                for(int i = 0; i < lcs.length; i++){
+                        if (i>0 && lcs[i] > 0){
+                            a = jTextAreaRight.getLineStartOffset(lcs[i-1]+1);
+                            b = jTextAreaRight.getLineEndOffset(lcs[i]-1);
+                            jTextAreaRight.getHighlighter().addHighlight(a, b, redPainter);
+
+                        }
+                        a = jTextAreaRight.getLineStartOffset(lcs[i]);
+                        b = jTextAreaRight.getLineEndOffset(lcs[i]);
+                        jTextAreaRight.getHighlighter().addHighlight(a, b, greenHighLight);
+
+                }
+            } else if(!jTextAreaRight.getText().isEmpty()){
+                jTextAreaRight.getHighlighter()
+                        .addHighlight(0, jTextAreaRight.getText().length()-1, redPainter);
             }
+        } catch (BadLocationException ex) {
+                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

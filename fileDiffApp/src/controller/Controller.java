@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import view.View;
 
 /**
@@ -33,7 +33,7 @@ public class Controller {
     
     public void loadFileLeft(){
         try {
-            fileLeft = readFile("src/algorithm/LCS.java");
+            fileLeft = readFile();
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName())
                     .log(Level.SEVERE, null, ex);
@@ -46,7 +46,7 @@ public class Controller {
     
     public void loadFileRight(){
         try {
-            fileRight = readFile("src/algorithm/LCS.java");
+            fileRight = readFile();
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName())
                     .log(Level.SEVERE, null, ex);
@@ -81,6 +81,14 @@ public class Controller {
         return new String(encoded, encoding);
     }
 
+    private String readFile()
+            throws IOException {
+        JFileChooser file=new JFileChooser(".");
+        file.showOpenDialog(view);
+
+        return readFile(file.getSelectedFile().getAbsolutePath());
+    }
+    
     private static String readFile(String path)
             throws IOException {
         return readFile(path, Charset.defaultCharset());
