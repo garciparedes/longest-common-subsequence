@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -61,11 +64,10 @@ public class Controller {
         view.setJTextAreaLeftText(fileLeft);
         view.setJTextAreaRightText(fileRight);
 
-        view.greenColorJTextAreaLeftText(lcs[0]);
-        view.greenColorJTextAreaRightText(lcs[1]);
-        //view.redColorJTextAreaLeftText(inverse(lcs[0], fileLeftLines.length));
-        //view.redColorJTextAreaRightText(inverse(lcs[1], fileRightLines.length));
-
+        view.colorJTextAreaLeftText(lcs[0],
+                inverse(lcs[0], fileLeftLines.length));
+        view.colorJTextAreaRightText(lcs[1],
+                inverse(lcs[1], fileRightLines.length));
     }
     
     
@@ -95,28 +97,27 @@ public class Controller {
     }
    
     
-    private static int[] inverse(int[] elements, int size){
-        int [] inverse = new int[size-elements.length];
-        int t = 0;
-        
-        for (int i = 0; i< elements.length;i++){
-            if(i == 0){
-                for(int j = 0; j< elements[i] ;j++, t++){
-                    inverse[t] = j;
-                }
-            } else{
-                for(int j = elements[i-1]; j < elements[i]; j++,t++){
-                    inverse[t] = j;
-                }
-            }
+    public static int[] inverse(int[] elements, int size){
+        ArrayList<Integer> inverseList = new ArrayList<>(size);
+        for(int i = 0; i < size; i++){
+            inverseList.add(i);
         }
         
-        for (int i = 0; i < inverse.length;i++){
-            System.out.print(inverse[i] + "  ");
+        List<Integer> intList = new ArrayList<Integer>();
+        for (int index = 0; index < elements.length; index++) {
+            intList.add(elements[index]);
         }
-        System.out.println();
-
+        
+        inverseList.removeAll(intList);
+        
+        int[] inverse = new int[inverseList.size()];
+        
+        for(int i = 0; i < inverse.length; i++){
+            inverse[i] = inverseList.get(i);
+            System.out.println(inverse[i]);
+        } 
         return inverse;
+        
     }
     
 }

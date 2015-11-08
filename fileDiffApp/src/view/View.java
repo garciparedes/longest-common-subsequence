@@ -162,38 +162,36 @@ public class View extends javax.swing.JFrame {
     }
 
     
-    public void greenColorJTextAreaLeftText(int[] lines) {
-        colorJTextAreatText(jTextAreaLeft, lines, greenHighLight);
+    public void colorJTextAreaLeftText(int[] lines, int[] redLines) {
+        colorJTextAreatText(jTextAreaLeft, lines, redLines);
     }
     
     
-    public void greenColorJTextAreaRightText(int[] lines) {
-        colorJTextAreatText(jTextAreaRight, lines, greenHighLight);
+    public void colorJTextAreaRightText(int[] greenLines, int[] redLines) {
+        colorJTextAreatText(jTextAreaRight, greenLines, redLines);
     }
     
     
     public static void colorJTextAreatText(javax.swing.JTextArea jTextArea
-            , int[] lines,Highlighter.HighlightPainter highLight ){
+            , int[] greenLines, int[] redLines){
         int a,b;
         try {
             jTextArea.getHighlighter().removeAllHighlights();
             
-            for(int i = 0; i < lines.length; i++){
-                a = jTextArea.getLineStartOffset(lines[i]);
-                b = jTextArea.getLineEndOffset(lines[i]);
-                jTextArea.getHighlighter().addHighlight(a, b, highLight);
+            for(int i = 0; i < greenLines.length; i++){
+                a = jTextArea.getLineStartOffset(greenLines[i]);
+                b = jTextArea.getLineEndOffset(greenLines[i]);
+                jTextArea.getHighlighter().addHighlight(a, b, greenHighLight);
+            }
+            
+            for(int i = 0; i < redLines.length; i++){
+                a = jTextArea.getLineStartOffset(redLines[i]);
+                b = jTextArea.getLineEndOffset(redLines[i]);
+                jTextArea.getHighlighter().addHighlight(a, b, redPainter);
             }
            
         } catch (BadLocationException ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void redColorJTextAreaRightText(int[] lines) {
-        colorJTextAreatText(jTextAreaLeft, lines, redPainter);
-    }
-
-    public void redColorJTextAreaLeftText(int[] lines) {
-        colorJTextAreatText(jTextAreaRight, lines, redPainter);
     }
 }
