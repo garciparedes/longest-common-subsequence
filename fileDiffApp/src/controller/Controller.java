@@ -27,34 +27,38 @@ public class Controller {
     
     public Controller(View view){
         this.view = view;
+        this.fileLeft = "";
+        this.fileRight = "";
     }
     
     public void loadFileLeft(){
         try {
-            fileLeft = readFile("src/main/Main.java");
+            fileLeft = readFile("src/algorithm/LCS.java");
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName())
                     .log(Level.SEVERE, null, ex);
-            fileLeft = "";
         }
         view.setJTextAreaLeftText(fileLeft);
+        view.colorJTextAreaLeftText(lcs());
     }
     
     public void loadFileRight(){
         try {
-            fileRight = readFile("src/main/Main.java");
-            fileLeft = readFile("src/main/Main.java");
-
+            fileRight = readFile("src/algorithm/LCS.java");
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName())
                     .log(Level.SEVERE, null, ex);
-            fileRight = "";
-            fileLeft = "";
-   
         }
-        view.setJTextAreaRightText(fileRight);    
+        view.setJTextAreaRightText(fileRight);
+        view.colorJTextAreaRightText(lcs());
     }
     
+    private int[] lcs(){
+        String[] fileLeftLines = fileLeft.split("\\r?\\n");
+        String[] fileRightLines = fileRight.split("\\r?\\n");    
+        return LCS.lcsPositionsOfY(fileLeftLines
+            , fileRightLines);
+    }
     
     
     private static String readFile(String path, Charset encoding)

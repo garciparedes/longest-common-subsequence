@@ -6,6 +6,7 @@
 package view;
 
 import controller.Controller;
+import java.awt.Color;
 
 /**
  *
@@ -37,9 +38,9 @@ public class View extends javax.swing.JFrame {
         jButtonLoadFile2 = new javax.swing.JButton();
         jLayeredPanelGrid = new javax.swing.JLayeredPane();
         jScrollPaneLeft = new javax.swing.JScrollPane();
-        jTextAreaLeft = new javax.swing.JTextArea();
+        jTextPaneLeft = new javax.swing.JTextPane();
         jScrollPaneRight = new javax.swing.JScrollPane();
-        jTextAreaRight = new javax.swing.JTextArea();
+        jTextPaneRight = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -74,15 +75,13 @@ public class View extends javax.swing.JFrame {
 
         jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 2));
 
-        jTextAreaLeft.setColumns(20);
-        jTextAreaLeft.setRows(5);
-        jScrollPaneLeft.setViewportView(jTextAreaLeft);
+        jTextPaneLeft.setEditable(false);
+        jScrollPaneLeft.setViewportView(jTextPaneLeft);
 
         jLayeredPanelGrid.add(jScrollPaneLeft);
 
-        jTextAreaRight.setColumns(20);
-        jTextAreaRight.setRows(5);
-        jScrollPaneRight.setViewportView(jTextAreaRight);
+        jTextPaneRight.setEditable(false);
+        jScrollPaneRight.setViewportView(jTextPaneRight);
 
         jLayeredPanelGrid.add(jScrollPaneRight);
 
@@ -122,8 +121,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPanelGrid;
     private javax.swing.JScrollPane jScrollPaneLeft;
     private javax.swing.JScrollPane jScrollPaneRight;
-    private javax.swing.JTextArea jTextAreaLeft;
-    private javax.swing.JTextArea jTextAreaRight;
+    private javax.swing.JTextPane jTextPaneLeft;
+    private javax.swing.JTextPane jTextPaneRight;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
     
@@ -132,19 +131,34 @@ public class View extends javax.swing.JFrame {
     
     private void myInitComponents() {
         setLocationRelativeTo(null);
-        textLineNumberLeft = new TextLineNumber(jTextAreaLeft);
-        textLineNumberRight = new TextLineNumber(jTextAreaRight);
+        textLineNumberLeft = new TextLineNumber(jTextPaneLeft);
+        textLineNumberRight = new TextLineNumber(jTextPaneRight);
         jScrollPaneLeft.setRowHeaderView( textLineNumberLeft );
         jScrollPaneRight.setRowHeaderView( textLineNumberRight );
-        jTextAreaLeft.setLineWrap(true);
-        jTextAreaRight.setLineWrap(true);
+        //jTextPaneLeft.setLineWrap(true);
+        //jTextPaneRight.setLineWrap(true);
     }
     
     public void setJTextAreaLeftText(String text){
-        jTextAreaLeft.setText(text);
+        jTextPaneLeft.setText(text);
     }
 
     public void setJTextAreaRightText(String text) {
-        jTextAreaRight.setText(text);
+        jTextPaneRight.setText(text);
+    }
+
+    public void colorJTextAreaLeftText(int[] lcs) {
+        for(int i = 0; i < lcs.length; i++){
+            System.out.print(lcs[i]+ " ");
+        }
+        System.out.println();
+        jTextPaneRight.setForeground(Color.red);
+    }
+    
+    public void colorJTextAreaRightText(int[] lcs) {
+        for(int i = 0; i < lcs.length; i++){
+            System.out.print(lcs[i]+ " ");
+        }
+        System.out.println();
     }
 }
