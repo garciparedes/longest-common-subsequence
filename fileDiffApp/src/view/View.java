@@ -46,6 +46,7 @@ public class View extends javax.swing.JFrame {
         jTextAreaLeft = new javax.swing.JTextArea();
         jScrollPaneRight = new javax.swing.JScrollPane();
         jTextAreaRight = new javax.swing.JTextArea();
+        jLabelLCS = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -77,7 +78,7 @@ public class View extends javax.swing.JFrame {
         });
         jToolBar.add(jButtonLoadFile2);
 
-        jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 2));
+        jLayeredPanelGrid.setLayout(new java.awt.GridLayout());
 
         jTextAreaLeft.setEditable(false);
         jTextAreaLeft.setColumns(20);
@@ -93,22 +94,29 @@ public class View extends javax.swing.JFrame {
 
         jLayeredPanelGrid.add(jScrollPaneRight);
 
+        jLabelLCS.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabelLCS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelLCS.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jToolBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelLCS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPanelGrid)
+                .addComponent(jLabelLCS)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -126,6 +134,7 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLoadFile1;
     private javax.swing.JButton jButtonLoadFile2;
+    private javax.swing.JLabel jLabelLCS;
     private javax.swing.JLayeredPane jLayeredPanelGrid;
     private javax.swing.JScrollPane jScrollPaneLeft;
     private javax.swing.JScrollPane jScrollPaneRight;
@@ -160,7 +169,10 @@ public class View extends javax.swing.JFrame {
     public void setJTextAreaRightText(String text) {
         jTextAreaRight.setText(text);
     }
-
+    
+    public void setJLabelLCS(String text) {
+        jLabelLCS.setText(text);
+    }
     
     public void colorJTextAreaLeftText(int[] lines, int[] redLines) {
         colorJTextAreatText(jTextAreaLeft, lines, redLines);

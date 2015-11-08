@@ -68,6 +68,8 @@ public class Controller {
                 inverse(lcs[0], fileLeftLines.length));
         view.colorJTextAreaRightText(lcs[1],
                 inverse(lcs[1], fileRightLines.length));
+
+        view.setJLabelLCS("The Longest Common Subsequence of Lines is: "+ lcs[0].length);
     }
     
     
@@ -114,7 +116,6 @@ public class Controller {
         
         for(int i = 0; i < inverse.length; i++){
             inverse[i] = inverseList.get(i);
-            System.out.println(inverse[i]);
         } 
         return inverse;
         
