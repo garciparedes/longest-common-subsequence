@@ -37,11 +37,8 @@ public class Controller {
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName())
                     .log(Level.SEVERE, null, ex);
-        }
-        view.setJTextAreaLeftText(fileLeft);
-        view.colorJTextAreaLeftText(lcsToLeft());
-        view.colorJTextAreaRightText(lcsToRight());
-
+        }  
+        update();
     }
     
     public void loadFileRight(){
@@ -50,33 +47,37 @@ public class Controller {
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName())
                     .log(Level.SEVERE, null, ex);
-        }
-        view.setJTextAreaRightText(fileRight);
+        } 
+        update();
+    }
+    
+    public void update(){
         
-        view.colorJTextAreaLeftText(lcsToLeft());
-        view.colorJTextAreaRightText(lcsToRight());
+        String[] fileLeftLines = fileLeft.split("\\r?\\n");
+        String[] fileRightLines = fileRight.split("\\r?\\n");
+        
+        int [][] lcs = LCS.lcsPositions(fileLeftLines, fileRightLines);
+        
+        view.setJTextAreaLeftText(fileLeft);
+        view.setJTextAreaRightText(fileRight);
+
+        view.greenColorJTextAreaLeftText(lcs[0]);
+        view.greenColorJTextAreaRightText(lcs[1]);
+        //view.redColorJTextAreaLeftText(inverse(lcs[0], fileLeftLines.length));
+        //view.redColorJTextAreaRightText(inverse(lcs[1], fileRightLines.length));
+
     }
     
     
-    private int[] lcsToLeft(){
+    private int[][] lcs(){
         String[] fileLeftLines = fileLeft.split("\\r?\\n");
         String[] fileRightLines = fileRight.split("\\r?\\n");
-        return LCS.lcsPositionsOfY(fileRightLines
-            , fileLeftLines);
-    }
-    
-    
-    private int[] lcsToRight(){
-        String[] fileLeftLines = fileLeft.split("\\r?\\n");
-        String[] fileRightLines = fileRight.split("\\r?\\n");
-        return LCS.lcsPositionsOfY(fileLeftLines
-            , fileRightLines);
+        return LCS.lcsPositions(fileLeftLines, fileRightLines);
     }
     
     
     private static String readFile(String path, Charset encoding)
-            throws IOException {
-        
+            throws IOException { 
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
@@ -85,13 +86,37 @@ public class Controller {
             throws IOException {
         JFileChooser file=new JFileChooser(".");
         file.showOpenDialog(view);
-
         return readFile(file.getSelectedFile().getAbsolutePath());
     }
     
     private static String readFile(String path)
             throws IOException {
         return readFile(path, Charset.defaultCharset());
+    }
+   
+    
+    private static int[] inverse(int[] elements, int size){
+        int [] inverse = new int[size-elements.length];
+        int t = 0;
+        
+        for (int i = 0; i< elements.length;i++){
+            if(i == 0){
+                for(int j = 0; j< elements[i] ;j++, t++){
+                    inverse[t] = j;
+                }
+            } else{
+                for(int j = elements[i-1]; j < elements[i]; j++,t++){
+                    inverse[t] = j;
+                }
+            }
+        }
+        
+        for (int i = 0; i < inverse.length;i++){
+            System.out.print(inverse[i] + "  ");
+        }
+        System.out.println();
+
+        return inverse;
     }
     
 }

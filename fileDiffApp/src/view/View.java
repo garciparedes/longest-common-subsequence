@@ -138,8 +138,8 @@ public class View extends javax.swing.JFrame {
     private TextLineNumber textLineNumberRight;
     
 
-    private final Highlighter.HighlightPainter redPainter = new DefaultHighlighter.DefaultHighlightPainter(new Color(240, 101, 55));
-    private final Highlighter.HighlightPainter greenHighLight = new DefaultHighlighter.DefaultHighlightPainter(new Color(192, 216, 144));
+    private static final Highlighter.HighlightPainter redPainter = new DefaultHighlighter.DefaultHighlightPainter(new Color(240, 101, 55));
+    private static final Highlighter.HighlightPainter greenHighLight = new DefaultHighlighter.DefaultHighlightPainter(new Color(192, 216, 144));
 
     private void myInitComponents() {        
         setLocationRelativeTo(null);
@@ -151,65 +151,49 @@ public class View extends javax.swing.JFrame {
         jTextAreaRight.setLineWrap(true);
     }
     
+    
     public void setJTextAreaLeftText(String text){
         jTextAreaLeft.setText(text);
     }
 
+    
     public void setJTextAreaRightText(String text) {
         jTextAreaRight.setText(text);
     }
 
-    public void colorJTextAreaLeftText(int[] lcs) {
+    
+    public void greenColorJTextAreaLeftText(int[] lines) {
+        colorJTextAreatText(jTextAreaLeft, lines, greenHighLight);
+    }
+    
+    
+    public void greenColorJTextAreaRightText(int[] lines) {
+        colorJTextAreatText(jTextAreaRight, lines, greenHighLight);
+    }
+    
+    
+    public static void colorJTextAreatText(javax.swing.JTextArea jTextArea
+            , int[] lines,Highlighter.HighlightPainter highLight ){
         int a,b;
         try {
-            jTextAreaLeft.getHighlighter().removeAllHighlights();
-            if (lcs.length >0){
-
-                for(int i = 0; i < lcs.length; i++){
-                    if (i>0 && lcs[i] > 0){
-                        a = jTextAreaLeft.getLineStartOffset(lcs[i-1]+1);
-                        b = jTextAreaLeft.getLineEndOffset(lcs[i]-1);
-                        jTextAreaLeft.getHighlighter().addHighlight(a, b, redPainter);
-
-                    }
-                    a = jTextAreaLeft.getLineStartOffset(lcs[i]);
-                    b = jTextAreaLeft.getLineEndOffset(lcs[i]);
-                    jTextAreaLeft.getHighlighter().addHighlight(a, b, greenHighLight);
-                }
-            } else if(!jTextAreaLeft.getText().isEmpty()){
-                jTextAreaLeft.getHighlighter()
-                        .addHighlight(0, jTextAreaLeft.getText().length()-1, redPainter);
+            jTextArea.getHighlighter().removeAllHighlights();
+            
+            for(int i = 0; i < lines.length; i++){
+                a = jTextArea.getLineStartOffset(lines[i]);
+                b = jTextArea.getLineEndOffset(lines[i]);
+                jTextArea.getHighlighter().addHighlight(a, b, highLight);
             }
+           
         } catch (BadLocationException ex) {
                     Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void colorJTextAreaRightText(int[] lcs) {
-        int a,b;
-        
-        try {
 
-            jTextAreaRight.getHighlighter().removeAllHighlights();
-            if (lcs.length >0){
-                for(int i = 0; i < lcs.length; i++){
-                        if (i>0 && lcs[i] > 0){
-                            a = jTextAreaRight.getLineStartOffset(lcs[i-1]+1);
-                            b = jTextAreaRight.getLineEndOffset(lcs[i]-1);
-                            jTextAreaRight.getHighlighter().addHighlight(a, b, redPainter);
+    public void redColorJTextAreaRightText(int[] lines) {
+        colorJTextAreatText(jTextAreaLeft, lines, redPainter);
+    }
 
-                        }
-                        a = jTextAreaRight.getLineStartOffset(lcs[i]);
-                        b = jTextAreaRight.getLineEndOffset(lcs[i]);
-                        jTextAreaRight.getHighlighter().addHighlight(a, b, greenHighLight);
-
-                }
-            } else if(!jTextAreaRight.getText().isEmpty()){
-                jTextAreaRight.getHighlighter()
-                        .addHighlight(0, jTextAreaRight.getText().length()-1, redPainter);
-            }
-        } catch (BadLocationException ex) {
-                    Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void redColorJTextAreaLeftText(int[] lines) {
+        colorJTextAreatText(jTextAreaRight, lines, redPainter);
     }
 }

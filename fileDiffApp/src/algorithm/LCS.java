@@ -28,19 +28,21 @@ public class LCS{
      * the positions of Longest Common Subsequence at Second
      * Sequence.
      */
-    public static <E> int[] lcsPositionsOfY(E[] X, E[] Y){
+    public static <E> int[][] lcsPositions(E[] X, E[] Y){
         int m = X.length, n = Y.length;
         int T[][] = lcsTable(X, Y, m, n);
         
         int index= T[m][n];
 
-        int[] lcsList = new int[index];
+        int[] lcsX = new int[index];
+        int[] lcsY = new int[index];
 
         int i = m;
         int j = n;
         while(i > 0 && j > 0){
             if (X[i-1].equals(Y[j-1])){
-                lcsList[index-1] = j-1;
+                lcsX[index-1] = i-1;
+                lcsY[index-1] = j-1;
                 i--;
                 j--;
                 index--;
@@ -50,8 +52,8 @@ public class LCS{
                 j--;
             }
         }
-
-        return lcsList;
+        int[][] result = {lcsX,lcsY};
+        return result;
     }
 
 
