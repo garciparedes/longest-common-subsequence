@@ -5,16 +5,20 @@
  */
 package view;
 
+import controller.Controller;
+
 /**
  *
  * @author garciparedes
  */
 public class View extends javax.swing.JFrame {
 
+    private Controller controller;
     /**
      * Creates new form View
      */
     public View() {
+        controller = new Controller(this);
         initComponents();
         myInitComponents();
     }
@@ -33,9 +37,9 @@ public class View extends javax.swing.JFrame {
         jButtonLoadFile2 = new javax.swing.JButton();
         jLayeredPanelGrid = new javax.swing.JLayeredPane();
         jScrollPaneLeft = new javax.swing.JScrollPane();
-        jTextPaneLeft = new javax.swing.JTextPane();
+        jTextAreaLeft = new javax.swing.JTextArea();
         jScrollPaneRight = new javax.swing.JScrollPane();
-        jTextPaneRight = new javax.swing.JTextPane();
+        jTextAreaRight = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -50,21 +54,35 @@ public class View extends javax.swing.JFrame {
         jButtonLoadFile1.setFocusable(false);
         jButtonLoadFile1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLoadFile1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonLoadFile1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoadFile1ActionPerformed(evt);
+            }
+        });
         jToolBar.add(jButtonLoadFile1);
 
         jButtonLoadFile2.setText("Load File2");
         jButtonLoadFile2.setFocusable(false);
         jButtonLoadFile2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonLoadFile2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonLoadFile2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLoadFile2ActionPerformed(evt);
+            }
+        });
         jToolBar.add(jButtonLoadFile2);
 
         jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 2));
 
-        jScrollPaneLeft.setViewportView(jTextPaneLeft);
+        jTextAreaLeft.setColumns(20);
+        jTextAreaLeft.setRows(5);
+        jScrollPaneLeft.setViewportView(jTextAreaLeft);
 
         jLayeredPanelGrid.add(jScrollPaneLeft);
 
-        jScrollPaneRight.setViewportView(jTextPaneRight);
+        jTextAreaRight.setColumns(20);
+        jTextAreaRight.setRows(5);
+        jScrollPaneRight.setViewportView(jTextAreaRight);
 
         jLayeredPanelGrid.add(jScrollPaneRight);
 
@@ -90,14 +108,22 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonLoadFile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadFile1ActionPerformed
+        controller.loadFileLeft();
+    }//GEN-LAST:event_jButtonLoadFile1ActionPerformed
+
+    private void jButtonLoadFile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadFile2ActionPerformed
+        controller.loadFileRight();
+    }//GEN-LAST:event_jButtonLoadFile2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLoadFile1;
     private javax.swing.JButton jButtonLoadFile2;
     private javax.swing.JLayeredPane jLayeredPanelGrid;
     private javax.swing.JScrollPane jScrollPaneLeft;
     private javax.swing.JScrollPane jScrollPaneRight;
-    private javax.swing.JTextPane jTextPaneLeft;
-    private javax.swing.JTextPane jTextPaneRight;
+    private javax.swing.JTextArea jTextAreaLeft;
+    private javax.swing.JTextArea jTextAreaRight;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
     
@@ -106,9 +132,19 @@ public class View extends javax.swing.JFrame {
     
     private void myInitComponents() {
         setLocationRelativeTo(null);
-        textLineNumberLeft = new TextLineNumber(jTextPaneLeft);
-        textLineNumberRight = new TextLineNumber(jTextPaneRight);
+        textLineNumberLeft = new TextLineNumber(jTextAreaLeft);
+        textLineNumberRight = new TextLineNumber(jTextAreaRight);
         jScrollPaneLeft.setRowHeaderView( textLineNumberLeft );
         jScrollPaneRight.setRowHeaderView( textLineNumberRight );
+        jTextAreaLeft.setLineWrap(true);
+        jTextAreaRight.setLineWrap(true);
+    }
+    
+    public void setJTextAreaLeftText(String text){
+        jTextAreaLeft.setText(text);
+    }
+
+    public void setJTextAreaRightText(String text) {
+        jTextAreaRight.setText(text);
     }
 }
