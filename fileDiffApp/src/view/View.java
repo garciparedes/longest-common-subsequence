@@ -7,6 +7,11 @@ package view;
 
 import controller.Controller;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 
 /**
  *
@@ -38,15 +43,14 @@ public class View extends javax.swing.JFrame {
         jButtonLoadFile2 = new javax.swing.JButton();
         jLayeredPanelGrid = new javax.swing.JLayeredPane();
         jScrollPaneLeft = new javax.swing.JScrollPane();
-        jTextPaneLeft = new javax.swing.JTextPane();
+        jTextAreaLeft = new javax.swing.JTextArea();
         jScrollPaneRight = new javax.swing.JScrollPane();
-        jTextPaneRight = new javax.swing.JTextPane();
+        jTextAreaRight = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(800, 480));
-        setPreferredSize(new java.awt.Dimension(800, 480));
 
         jToolBar.setFloatable(false);
         jToolBar.setRollover(true);
@@ -75,13 +79,17 @@ public class View extends javax.swing.JFrame {
 
         jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 2));
 
-        jTextPaneLeft.setEditable(false);
-        jScrollPaneLeft.setViewportView(jTextPaneLeft);
+        jTextAreaLeft.setEditable(false);
+        jTextAreaLeft.setColumns(20);
+        jTextAreaLeft.setRows(5);
+        jScrollPaneLeft.setViewportView(jTextAreaLeft);
 
         jLayeredPanelGrid.add(jScrollPaneLeft);
 
-        jTextPaneRight.setEditable(false);
-        jScrollPaneRight.setViewportView(jTextPaneRight);
+        jTextAreaRight.setEditable(false);
+        jTextAreaRight.setColumns(20);
+        jTextAreaRight.setRows(5);
+        jScrollPaneRight.setViewportView(jTextAreaRight);
 
         jLayeredPanelGrid.add(jScrollPaneRight);
 
@@ -121,44 +129,59 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPanelGrid;
     private javax.swing.JScrollPane jScrollPaneLeft;
     private javax.swing.JScrollPane jScrollPaneRight;
-    private javax.swing.JTextPane jTextPaneLeft;
-    private javax.swing.JTextPane jTextPaneRight;
+    private javax.swing.JTextArea jTextAreaLeft;
+    private javax.swing.JTextArea jTextAreaRight;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
     
     private TextLineNumber textLineNumberLeft;
     private TextLineNumber textLineNumberRight;
     
-    private void myInitComponents() {
+
+    private final Highlighter.HighlightPainter redPainter = new DefaultHighlighter.DefaultHighlightPainter(new Color(240, 101, 55));
+    private final Highlighter.HighlightPainter greenHighLight = new DefaultHighlighter.DefaultHighlightPainter(new Color(192, 216, 144));
+
+    private void myInitComponents() {        
         setLocationRelativeTo(null);
-        textLineNumberLeft = new TextLineNumber(jTextPaneLeft);
-        textLineNumberRight = new TextLineNumber(jTextPaneRight);
+        textLineNumberLeft = new TextLineNumber(jTextAreaLeft);
+        textLineNumberRight = new TextLineNumber(jTextAreaRight);
         jScrollPaneLeft.setRowHeaderView( textLineNumberLeft );
         jScrollPaneRight.setRowHeaderView( textLineNumberRight );
-        //jTextPaneLeft.setLineWrap(true);
-        //jTextPaneRight.setLineWrap(true);
+        jTextAreaLeft.setLineWrap(true);
+        jTextAreaRight.setLineWrap(true);
     }
     
     public void setJTextAreaLeftText(String text){
-        jTextPaneLeft.setText(text);
+        jTextAreaLeft.setText(text);
     }
 
     public void setJTextAreaRightText(String text) {
-        jTextPaneRight.setText(text);
+        jTextAreaRight.setText(text);
     }
 
     public void colorJTextAreaLeftText(int[] lcs) {
+        jTextAreaLeft.getHighlighter().removeAllHighlights();
         for(int i = 0; i < lcs.length; i++){
-            System.out.print(lcs[i]+ " ");
+            try {
+                int a = jTextAreaLeft.getLineStartOffset(lcs[i]);
+                int b = jTextAreaLeft.getLineEndOffset(lcs[i]);
+                jTextAreaLeft.getHighlighter().addHighlight(a, b, greenHighLight);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        System.out.println();
-        jTextPaneRight.setForeground(Color.red);
     }
     
     public void colorJTextAreaRightText(int[] lcs) {
+        jTextAreaRight.getHighlighter().removeAllHighlights();
         for(int i = 0; i < lcs.length; i++){
-            System.out.print(lcs[i]+ " ");
+            try {
+                int a = jTextAreaRight.getLineStartOffset(lcs[i]);
+                int b = jTextAreaRight.getLineEndOffset(lcs[i]);
+                jTextAreaRight.getHighlighter().addHighlight(a, b, greenHighLight);
+            } catch (BadLocationException ex) {
+                Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        System.out.println();
     }
 }

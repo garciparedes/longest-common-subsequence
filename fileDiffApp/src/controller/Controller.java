@@ -39,7 +39,9 @@ public class Controller {
                     .log(Level.SEVERE, null, ex);
         }
         view.setJTextAreaLeftText(fileLeft);
-        view.colorJTextAreaLeftText(lcs());
+        view.colorJTextAreaLeftText(lcsToLeft());
+        view.colorJTextAreaRightText(lcsToRight());
+
     }
     
     public void loadFileRight(){
@@ -50,12 +52,23 @@ public class Controller {
                     .log(Level.SEVERE, null, ex);
         }
         view.setJTextAreaRightText(fileRight);
-        view.colorJTextAreaRightText(lcs());
+        
+        view.colorJTextAreaLeftText(lcsToLeft());
+        view.colorJTextAreaRightText(lcsToRight());
     }
     
-    private int[] lcs(){
+    
+    private int[] lcsToLeft(){
         String[] fileLeftLines = fileLeft.split("\\r?\\n");
-        String[] fileRightLines = fileRight.split("\\r?\\n");    
+        String[] fileRightLines = fileRight.split("\\r?\\n");
+        return LCS.lcsPositionsOfY(fileRightLines
+            , fileLeftLines);
+    }
+    
+    
+    private int[] lcsToRight(){
+        String[] fileLeftLines = fileLeft.split("\\r?\\n");
+        String[] fileRightLines = fileRight.split("\\r?\\n");
         return LCS.lcsPositionsOfY(fileLeftLines
             , fileRightLines);
     }
