@@ -8,19 +8,19 @@ package algorithm;
 
 /**
  * Longest Common Subsequence Algorithm.
- * 
+ *
  * Static Class to solve Longest Common Subsequence problem
- * 
+ *
  * @author garciparedes
  */
 public class LCS{
-    
-    
+
+
     /**
      * Longest Common Subsequence Algorithm.
-     * 
+     *
      * It problem is solved by Dynamic programming.
-     * 
+     *
      * @param <E> Type of elements.
      * @param X First sequence of elements.
      * @param Y Second sequence of elements.
@@ -31,15 +31,15 @@ public class LCS{
     public static <E> int[] lcsPositionsOfY(E[] X, E[] Y){
         int m = X.length, n = Y.length;
         int T[][] = lcsTable(X, Y, m, n);
-
+        
         int index= T[m][n];
 
         int[] lcsList = new int[index];
-        
+
         int i = m;
         int j = n;
         while(i > 0 && j > 0){
-            if (X[i-1] == Y[j-1]){
+            if (X[i-1].equals(Y[j-1])){
                 lcsList[index-1] = j-1;
                 i--;
                 j--;
@@ -53,13 +53,13 @@ public class LCS{
 
         return lcsList;
     }
-    
-    
+
+
     /**
      * Longest Common Subsequence Algorithm.
-     * 
+     *
      * It problem is solved by Dynamic programming.
-     * 
+     *
      * @param <E> Type of elements.
      * @param X First sequence of elements.
      * @param Y Second sequence of elements.
@@ -68,16 +68,16 @@ public class LCS{
     public static <E> int lcslen(E[] X, E[] Y){
         int m = X.length, n = Y.length;
         int  T[][] = lcsTable(X, Y, m, n);
-        
+
         return T[m][n];
     }
-    
-    
+
+
     /**
      * Function that generates dynamic table,
-     * 
+     *
      * It problem is solved by Dynamic programming.
-     * 
+     *
      * @param <E> Type of elements.
      * @param X First sequence of elements.
      * @param Y Second sequence of elements.
@@ -87,9 +87,9 @@ public class LCS{
      * the length of the possible subsequences.
      */
     private static <E> int[][] lcsTable(E[] X, E[] Y, int m, int n){
-        
+
         int  T[][] = new int[m+1][n+1];
-        
+
         for (int i = 1 ; i < m+1;i++){
             for (int j = 1 ; j < n+1;j++){
                 if(X[i-1].equals(Y[j-1])){
