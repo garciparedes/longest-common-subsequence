@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{geometry}
 \usepackage{graphicx}
-
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{algorithm}% http://ctan.org/pkg/algorithms
 \usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 
@@ -176,21 +176,250 @@
 		Sean $X = abcde, Y = aert $ por lo que $m = 5, n = 4$.
 		\paragraph{}
 		Lo primero que haremos es aplicar el algoritmo para generar la matriz $L$.
+		\newline{Nota:}
+		Para mejorar la eficiencia del algoritmo aumenta en 1 el tamaño de la matriz para añadir 0 en las entradas $L_{ij}$ tales que $i = 0$ o $j = 0$, lo que reduce el número de comprobaciones respecto del límite.
 		
 		\begin{center}
+    \(
   			\begin{tabular}{ | c | c | c | c | c | c | c | }
     				\hline
-				   & a & b  & c  & d & e \\ \hline
-				a &   &   &    &    &     \\ \hline
-				e &   &   &    &    &    \\ \hline
-				r &   &   &    &    &    \\ \hline
-				t &   &   &    &    &    \\
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ &   &   &    &    &   &    \\ \hline
+				a &   &   &    &    &    &    \\ \hline
+				e &   &   &    &    &    &   \\ \hline
+				r &   &   &    &    &    &   \\ \hline
+				t &   &   &    &    &   &    \\
 				\hline
 			\end{tabular}
-		\end{center}
+		    \)
+    \hspace{.1in}
+    \(
+  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 &   &    &    &    &    \\ \hline
+				e & 0 &   &    &    &    &   \\ \hline
+				r & 0 &   &    &    &    &   \\ \hline
+				t & 0  &   &    &    &   &    \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(
+  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 &    &    &    &    \\ \hline
+				e & 0 &   &    &    &    &   \\ \hline
+				r & 0 &   &    &    &    &   \\ \hline
+				t & 0  &   &    &    &   &    \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1   &    &    &    \\ \hline
+				e & 0 &   &    &    &    &   \\ \hline
+				r & 0 &   &    &    &    &   \\ \hline
+				t & 0  &   &    &    &   &    \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 &    &    &    &   \\ \hline
+				r & 0 &   &    &    &    &   \\ \hline
+				t & 0  &   &    &    &   &    \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				r & 0 &   &    &    &    &   \\ \hline
+				t & 0  &   &    &    &   &    \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				t & 0  &   &    &    &   &    \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & 2 \\
+				\hline
+			\end{tabular}
+	    \)
+\end{center}
 
-	
+	\paragraph{}
+	Una vez  rellenada la matriz ya conocemos la longitud de la subsecuencia común más larga, que, como dijimos antes se aloja en $L_{mn}$, es decir, $L_{65}$ ya que en nuestro caso hemos hecho más grande la matriz (sino sería $L_{54}$).
+	\paragraph{}
+	Para obtener la subsecuencia común más larga utilizaremos el algoritmo expuesto anteriormente:
+
+		\begin{center}
+    \(
+  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & 1 & 1 & 1 & \cellcolor{blue!25}1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+				\hline
+			\end{tabular}
+			    \)
+    \hspace{.1in}
+    \(		
+			\begin{tabular}{ | c | c | c | c | c | c | c | }
+    				\hline
+				   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+				$\emptyset$ & \cellcolor{blue!25}0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+				a & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & 1 \\ \hline
+				e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+				r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+				t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+				\hline
+			\end{tabular}
+	    \)
+\end{center}	
+		\paragraph{}
+		Los resultados de la ejecución para las secuencias $abcde$ y $aert$ son los siguientes; $LCS = ae$ y su longitud 2
 	\subsection{PseudoCódigo}
+		
+		\begin{algorithm}[H]
+
+			\caption{closestMidle}
+
+			\label{closestMidle}
+
+			\begin{algorithmic}[1] % The number tells where the line numbering should start
+
+			\Function{closestMidle}{$X, Y, m, n) $} 
+				\State $X:$ secuencia de m elementos [0...m-1]
+				\State $Y:$ secuencia de n elementos [0...n-1]
+				\State $m:$ longitud de X
+				\State $n:$ longitud de Y
+				\State
+		
+				\State $L \gets array[0...m][0...n]$
+				\State
+
+
+				\For{$i\gets 0, i < m+1, i++$}
+					\For{$j\gets 0, i < n+1, j++$}
+						\If{$i = 0 \vee j = 0$}   							\State $L[i][j]\gets 0$						\ElsIf{$X[i-1] =Y[j-1]$} 							  \State $L[i][j]\gets L[i-1][j-1] + 1$						\Else 							\State $L[i][j]\gets max(L[i-1][j], L[i][j-1])$						\EndIf
+					\EndFor
+				\EndFor
+				\State
+				
+				\State $index \gets L[m][n]$
+				\State $LCS \gets array[0...index-1]$
+				\State
+				
+				\State $i \gets m$
+				\State $j \gets n$
+				\While{$i > 0 \wedge j > 0$}
+					\If{$X[i-1] = Y[j-1]$}   						\State $LCS[index-1]\gets X[i-1]$
+						\State $index\gets index - 1$
+ 						\State $j\gets j - 1$
+ 						\State $j\gets j - 1$
+					\ElsIf{$L[i-1][j] > L[i][j-1]$} 						\State $i\gets i - 1$					\Else 						\State $j\gets j - 1$
+					\EndIf
+				\EndWhile
+				\State
+								
+				\State \textbf{return} $LCS$
+			\EndFunction
+			\end{algorithmic}
+
+		\end{algorithm}
 
 \section{Referencia Bibliográfica}
 
