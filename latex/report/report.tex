@@ -99,13 +99,73 @@
 
 	\subsection{Subestructura Optima}
 		\paragraph{}
-		La segunda propiedad que debe cumplir el problema es la de subestructura óptima, que consiste en encontrar la solución optima del problema a partir de soluciones óptimas de sus subproblemas.
-
+		La segunda propiedad que debe cumplir el problema es la de subestructura óptima, que consiste en lo siguiente: La solución al problema contiene (o depende) de las soluciones optimas a sus subproblemas. Esta es una propiedad que la programación dinámica comparte con los algoritmos voraces.
+		
 \section{Solución}
 	\subsection{Enfoques Disponibles}
+		\paragraph{}
+		Para resolver el problema de encontrar la subsecuencia común más larga entre N secuencias existen distintos enfoques:
+		
+		\paragraph{}
+		 Primeramente podríamos pensar en un enfoque por fuerza bruta, es decir, comparando todas las subsecuencias posibles dadas dos listas. Esto tendría un crecimiento asintótico de $O(2^{n_{1}}\sum_{i = 2}^{N}n_{i})$ que corresponde al coste de obtener todas las subsecuencias de la primera secuencia ( $O(2^{n_{1}})$) y compararlo con todas las demás  (sumatorio de todas las restantes), es decir, de compararlas todas con todas.
+		 
+		\paragraph{}
+		 Otra solución es utilizar un enfoque dinámico, ya que como demostraremos posteriormente, nuestro problema posee las características para ser resuelto de esta manera. Con este enfoque obtenemos un crecimiento asintótico de  $O(N\prod_{i = 1}^{N}n_{i})$ que corresponde al coste de generar la matriz que almacena las longitudes de subsecuencias comunes.
 
-	\subsection{Programación Dinámica}
+		\paragraph{}
+		Notese que para valores muy grandes de N el problema se transforma en uno de tipo NP-hard.
+	\subsection{Subestructura Óptima}
+		\paragraph{}
+		Veamos como encontrar la subsecuencia común más larga se puede resolver por programación dinámica. Abordaremos el problema referido a dos secuencias, pero este es extrapolable a cualquier número de secuencias fácilmente incrementando el tamaño de la entrada de nuestro algoritmo. 
+		\newline{}
+		Supongamos dos secuencias X[0...m-1] e Y[0...n-1] de tamaños m y n respectivamente que a modo de ejemplo supondremos que son abcde y aerf.
+		\newline{}
+		También que tenemos una matriz de L[0...m-1][0...n-1] de tamaño m x n en la cual iremos almacenando los resultados de cada subproblema
+	\subsubsection{Programación Dinámica}
 
+		\paragraph{}
+		En el caso de que X[m-1] sea igual a Y[n-1] (las últimas posiciones de cada secuencia), rellenaremos la matriz L con el valor de las secuencias sin esos últimos elementos + 1 (el elemento común encontrado):
+		\[
+		L(X[0..m-1], Y[0..n-1]) = 1 + L(X[0..m-2], Y[0..n-2])
+		\]
+		\newline{}
+		Ejemplo: 
+		\[
+		L(abcde, aerf) = 1 + L(abcd, aer)
+		\]
+
+		\paragraph{}
+		Por contra, si los dos últimos elementos no fueran iguales, es decir, si X[m-1] fuese distinto de Y[n-1] tendríamos que obtener el máximo de eliminar el último carácter de la primera secuencia y de la segunda, es decir:
+		\[
+		L(X[0..m-1], Y[0..n-1]) = max(L(X[0..m-2], Y[0..n-1]), L(X[0..m-1], Y[0..n-2])
+		\]
+		\newline{}
+		Ejemplo: 
+		\[
+		L(abcd, aer) = max( L(abc, aer), L(abcd, ae) )
+		\]
+		\paragraph{}
+		
+		La formulación completa del problema es la siguiente:
+		\[
+   		 LCS( X_{i}, Y_{j} ) = 
+			\begin{cases}
+			    	0									& \text{if } i = 0 \vee	 j = 0\\
+    				LCS( X_{i-1}, Y_{j-1}) + 1					& \text{if } x_{i} = y_{j}\\
+    				max(LCS( X_{i}, Y_{j-1}), LCS( X_{i-1}, Y_{j}))	& \text{if } x_{i} \not = y_{j}
+			\end{cases}
+		\]
+		
+	\subsubsection{Solapamiento de problemas}
+		\paragraph{}
+		Como se puede apreciar, cada subproblema se utiliza para obtener el resultado de los problemas de nivel superior. Por tanto podemos almacenar el resultado para solo calcularle una única vez al igual que en el caso de la Sucesión de Fibonacci..
+
+		
+
+		
+		
+
+	
 	\subsection{PseudoCódigo}
 
 \section{Referencia Bibliográfica}
@@ -117,6 +177,8 @@
 		\item \url{https://en.wikipedia.org/wiki/Dynamic_programming}	
 		\item \url{https://www.cs.berkeley.edu/~vazirani/algorithms/chap6.pdf}	
 		\item \url{https://en.wikibooks.org/wiki/Algorithms/Dynamic_Programming}	
+		\item \url{http://faculty.ksu.edu.sa/Alsalih/CSC%20529/5.2_DynamicProgramming.pdf}	
+		\item \url{http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/}	
 		
 		
 		
