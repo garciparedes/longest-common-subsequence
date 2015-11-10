@@ -17,7 +17,7 @@
 \newcommand\abs[1]{\left|#1\right|}
 
 
-\title{Algoritmo: Buscar el par de puntos mas cercano en espacio n-dimensional}
+\title{Algoritmo: Subsecuencia Común Más Larga}
 \author{Sergio García Prado}
 
 
@@ -103,7 +103,7 @@
 				\caption{Sucesión de Fibonacci \label{example_border}}
 		\end{figure}
 
-	\subsection{Subestructura Optima}
+	\subsection{Subestructura Óptima}
 	
 		\paragraph{}
 		La segunda propiedad que debe cumplir el problema es la de subestructura óptima, que consiste en lo siguiente: La solución al problema contiene (o depende) de las soluciones óptimas a sus subproblemas. Esta es una propiedad que la programación dinámica comparte con los algoritmos voraces.
@@ -470,7 +470,7 @@
 				\Comment{O(1)}
 		
 				\While{$i > 0 \wedge j > 0$}
-						\Comment{$O(\frac{n+m}{2})$}
+						\Comment{$O(max(n,m))$}
 				
 					\If{$X[i-1] = Y[j-1]$}
 					\Comment{O(1)}

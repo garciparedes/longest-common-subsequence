@@ -1,0 +1,51 @@
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Definici\IeC {\'o}n del problema}{1}{subsection.1.1}
+\contentsline {paragraph}{}{1}{section*.2}
+\contentsline {paragraph}{}{1}{section*.3}
+\contentsline {paragraph}{Secuencia:}{1}{section*.4}
+\contentsline {paragraph}{Subsecuencia:}{1}{section*.5}
+\contentsline {paragraph}{}{1}{section*.6}
+\contentsline {paragraph}{}{1}{section*.7}
+\contentsline {subsection}{\numberline {1.2}Aplicaciones}{1}{subsection.1.2}
+\contentsline {paragraph}{}{1}{section*.8}
+\contentsline {section}{\numberline {2}Programaci\IeC {\'o}n Din\IeC {\'a}mica}{1}{section.2}
+\contentsline {subsection}{\numberline {2.1}Definici\IeC {\'o}n}{1}{subsection.2.1}
+\contentsline {paragraph}{}{1}{section*.9}
+\contentsline {subsection}{\numberline {2.2}Solapamiento de Problemas}{2}{subsection.2.2}
+\contentsline {paragraph}{}{2}{section*.10}
+\contentsline {paragraph}{}{2}{section*.11}
+\contentsline {subsection}{\numberline {2.3}Subestructura Optima}{2}{subsection.2.3}
+\contentsline {paragraph}{}{2}{section*.12}
+\contentsline {section}{\numberline {3}Soluci\IeC {\'o}n}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Enfoques Disponibles}{2}{subsection.3.1}
+\contentsline {paragraph}{}{2}{section*.13}
+\contentsline {paragraph}{}{2}{section*.14}
+\contentsline {paragraph}{}{3}{section*.15}
+\contentsline {paragraph}{}{3}{section*.16}
+\contentsline {subsection}{\numberline {3.2}Enfoque din\IeC {\'a}mico}{3}{subsection.3.2}
+\contentsline {paragraph}{}{3}{section*.17}
+\contentsline {subsubsection}{\numberline {3.2.1}Notaci\IeC {\'o}n}{3}{subsubsection.3.2.1}
+\contentsline {paragraph}{}{3}{section*.18}
+\contentsline {paragraph}{}{3}{section*.19}
+\contentsline {paragraph}{}{3}{section*.20}
+\contentsline {subsubsection}{\numberline {3.2.2}Subestructura \IeC {\'o}ptima}{3}{subsubsection.3.2.2}
+\contentsline {paragraph}{}{3}{section*.21}
+\contentsline {paragraph}{}{3}{section*.22}
+\contentsline {paragraph}{}{4}{section*.23}
+\contentsline {paragraph}{}{4}{section*.24}
+\contentsline {subsubsection}{\numberline {3.2.3}Solapamiento de problemas}{4}{subsubsection.3.2.3}
+\contentsline {paragraph}{}{4}{section*.25}
+\contentsline {subsubsection}{\numberline {3.2.4}Obtenci\IeC {\'o}n de los resultados}{4}{subsubsection.3.2.4}
+\contentsline {paragraph}{}{4}{section*.26}
+\contentsline {paragraph}{}{4}{section*.27}
+\contentsline {paragraph}{}{4}{section*.28}
+\contentsline {subsubsection}{\numberline {3.2.5}Ejemplo de ejecuci\IeC {\'o}n}{4}{subsubsection.3.2.5}
+\contentsline {paragraph}{}{4}{section*.29}
+\contentsline {paragraph}{}{4}{section*.30}
+\contentsline {paragraph}{}{5}{section*.31}
+\contentsline {paragraph}{}{5}{section*.32}
+\contentsline {paragraph}{}{5}{section*.33}
+\contentsline {subsection}{\numberline {3.3}PseudoC\IeC {\'o}digo}{6}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}An\IeC {\'a}lisis asint\IeC {\'o}tico}{7}{subsection.3.4}
+\contentsline {paragraph}{}{7}{section*.34}
+\contentsline {section}{\numberline {4}Referencia Bibliogr\IeC {\'a}fica}{7}{section.4}
