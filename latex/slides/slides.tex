@@ -13,6 +13,8 @@
 
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
+\usepackage{algorithm}% http://ctan.org/pkg/algorithms
+\usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 
 \title[Subsecuencia Común Más Larga]{Subsecuencia Común Más Larga}
 \subtitle[Programación Dinámica]{Programación Dinámica}
@@ -84,7 +86,7 @@
 
  				\begin{itemize}
 			
-  					\item Es una secuencia que se obtiene a partir de otra secuencia de igual o mayor longitud mediante la supresión de algunos elementos manteniendo el orden de los elementos restantes.
+  					\item Es una secuencia que se obtiene a partir de otra de igual o mayor longitud mediante la supresión de algunos elementos manteniendo el orden de los restantes.
   			
 					\item Ejemplo: {A, C, A} es una subsecuencia de {A, B, C, A, E, F}.
   					
@@ -156,7 +158,7 @@
  			
 				\begin{itemize}
 			
-					\item N = número de secuencias.
+					\item N = Cantidad de secuencias.
 				
 					\item $n_{i} $ = Secuencia i-ésima.
 
@@ -176,11 +178,11 @@
  			
 					\begin{itemize}
 			
-						\item Se expondrá el caso de dos secuencias.
+						\item Se expone el caso de dos secuencias.
 
 						\item $X[0...m-1]$ e $Y[0...n-1]$  secuencias de longitud m y n respectivamente. 	
 				
-						\item L[0...m][0...n] matriz de tamaño m x n, para almacenar los resultados de cada subproblema
+						\item L[0...m][0...n] matriz de tamaño m x n, para almacenar los resultados de cada subproblema.
   					
 						\item Sea $S$ una secuencia de longitud $l$  e $i \in (1, l)$, entonces $S_{i}$ es la correspondiente a los $i$ primeros elementos. 
 			\newline{}
@@ -212,7 +214,7 @@
 			
 						\item Rellenar matriz L a partir de función LCS.
 				
-						\item Recorrer L desde $L_{m-1n-1}$ hasta $L_{00}$.
+						\item Recorrer L desde $L_{m-1n-1}$ hasta $L_{00}$ guardando los elementos iguales.
   					
 					\end{itemize}	
 					
@@ -449,6 +451,15 @@
 				\end{frame}	
 %%%%%%%%%%%%%%%
 
+				\begin{frame}{Pseudocódigo}
+ 			
+					\begin{figure}
+						\includegraphics[height=7.5cm]{../res/pseudo_code.png}
+					\caption{}
+										
+					\end{figure}
+				\end{frame}
+				
 				\begin{frame}{Error encontrado}
  			
 					\begin{figure}

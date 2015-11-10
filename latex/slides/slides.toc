@@ -8,4 +8,4 @@
 \beamer@sectionintoc {4}{Subsecuencia Com\IeC {\'u}n m\IeC {\'a}s larga}{15}{0}{4}
 \beamer@subsectionintoc {4}{1}{Enfoques Disponibles}{16}{0}{4}
 \beamer@subsectionintoc {4}{2}{Enfoque din\IeC {\'a}mico}{18}{0}{4}
-\beamer@sectionintoc {5}{Fin}{30}{0}{5}
+\beamer@sectionintoc {5}{Fin}{31}{0}{5}
