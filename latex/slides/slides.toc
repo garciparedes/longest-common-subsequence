@@ -1,8 +1,11 @@
 \beamer@endinputifotherversion {3.36pt}
-\select@language {english}
-\beamer@sectionintoc {1}{Introduction : Online Tax Payment}{2}{0}{1}
-\beamer@sectionintoc {2}{MySpace and OLTAS}{3}{0}{2}
-\beamer@sectionintoc {3}{How it Works}{4}{0}{3}
-\beamer@sectionintoc {4}{Benefits}{6}{0}{4}
-\beamer@sectionintoc {5}{References}{7}{0}{5}
-\beamer@sectionintoc {6}{End of Presentation}{8}{0}{6}
+\select@language {spanish}
+\beamer@sectionintoc {1}{Introducci\IeC {\'o}n}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Formulaci\IeC {\'o}n del Problema}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Definiciones}{6}{0}{1}
+\beamer@sectionintoc {2}{Aplicaciones}{9}{0}{2}
+\beamer@sectionintoc {3}{Programaci\IeC {\'o}n Din\IeC {\'a}mica}{11}{0}{3}
+\beamer@sectionintoc {4}{Subsecuencia Com\IeC {\'u}n m\IeC {\'a}s larga}{15}{0}{4}
+\beamer@subsectionintoc {4}{1}{Enfoques Disponibles}{16}{0}{4}
+\beamer@subsectionintoc {4}{2}{Enfoque din\IeC {\'a}mico}{18}{0}{4}
+\beamer@sectionintoc {5}{Fin}{30}{0}{5}

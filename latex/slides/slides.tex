@@ -1,3 +1,4 @@
+\PassOptionsToPackage{table}{xcolor}
 \documentclass{beamer}
 
 \mode<presentation>
@@ -9,151 +10,467 @@
   \setbeamertemplate{caption}[numbered]
 } 
 
-\usepackage[english]{babel}
+
+\usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
 
-\title[Industrial Training:OLTAS]{Industrial Training Presentation}
+\title[Subsecuencia Común Más Larga]{Subsecuencia Común Más Larga}
+\subtitle[Programación Dinámica]{Programación Dinámica}
 
-\author{Chitra Lakhotia (PRN:13030142076)\\}
+\author{Sergio García Prado\\}
 
-\institute{\bf Symbiosis Institute of Computer Studies And Research}
-%\textsc {Industrial Training Presentation }
+\date{10 de Noviembre de 2015}
 
-\date{$30^{\text{th}}$ May 2015}
+% Add support for \subsubsectionpage
+\def\subsubsectionname{\translate{Subsubsection}}
+\def\insertsubsubsectionnumber{\arabic{subsubsection}}
+\setbeamertemplate{subsubsection page}
+{
+  \begin{centering}
+    {\usebeamerfont{subsubsection name}\usebeamercolor[fg]{subsubsection name}\subsubsectionname~\insertsubsubsectionnumber}
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=4pt,center]{part title}
+      \usebeamerfont{subsubsection title}\insertsubsubsection\par
+    \end{beamercolorbox}
+  \end{centering}
+}
+\def\subsubsectionpage{\usebeamertemplate*{subsubsection page}}
+
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+\AtBeginSubsubsection{\frame{\subsubsectionpage}}
 
 \begin{document}
 
-\begin{frame}
-  \titlepage
-\end{frame}
-
-
-\section{Introduction : Online Tax Payment}
-
-\begin{frame}{Online Tax Payment(OLTAS)}
-
-\begin{itemize}
-  \item OLTAS is a private owned product used by Yes Bank.
-  \item A system which can integrate with internet portal and provide facility of making tax payments to their end internet portal users.
-\end{itemize}
-
-% Commands to include a figure:
-\begin{figure}
-%\includegraphics[width=5cm ,height= 3cm]{oltas-header.jpg}
-\caption{\label{fig:your-figure}OLTAS}
-\end{figure}
-\vskip 1cm
-
-\end{frame}
 %%%%%%%%%%%%%%%
 
-\section{MySpace and OLTAS}
+	\begin{frame}
+		\titlepage
+	\end{frame}
 
-\begin{frame}{MySpace}
-
-\begin{itemize}
-  \item OLTAS is a part of MySpace.
-  \item MySpace is totally for customer’s space, where different types of services like insurance schemes , cheque printing, online payments, gifts and voucher offers provided by Yes Bank under one application.
-
-\end{itemize}
-
-% Commands to include a figure:
-\begin{figure}
-%\includegraphics[width=5cm ,height= 3cm]{multitasking_cartoon.jpg}
-\caption{\label{fig:your-figure}MySpace}
-\end{figure}
-\vskip 1cm
-
-\end{frame}
+%%%%%%%%%%%%%%%
+	
+	\begin{frame}
+		\tableofcontents
+	\end{frame}
 
 %%%%%%%%%%%%%%%
 
-\section{How it Works}
+	\section{Introducción}
 
-\begin{frame}{Yes Bank and NSDL}
+	
+		\subsection{Formulación del Problema}
+			\begin{frame}{Formulación del Problema}
+ 				Dadas dos secuencias de longitud arbitraria, nuestro objetivo es encontrar la subsecuencia común de mayor longitud entre ambas.
 
-\begin{itemize}
-  \item Yes Bank is a depository participant of NSDL.
+			\end{frame}
+			
+		\subsection{Definiciones}
+		
+		
+			\begin{frame}{Secuencia}
 
-  \item Yes Bank act as a middle man in the process of online tax payment.
+ 				\begin{itemize}
+			
+  					\item Es una colección ordenada de elementos en la cual la repetición está permitida.
+  			
+					\item Ejemplo: {A, B, C, A, E, F}
 
-\end{itemize}
+				\end{itemize}
 
-\vskip 1cm
-\end{frame}
+			\end{frame}
+			
+			\begin{frame}{Subsecuencia}
 
-\begin{frame}{NSDL}
+ 				\begin{itemize}
+			
+  					\item Es una secuencia que se obtiene a partir de otra secuencia de igual o mayor longitud mediante la supresión de algunos elementos manteniendo el orden de los elementos restantes.
+  			
+					\item Ejemplo: {A, C, A} es una subsecuencia de {A, B, C, A, E, F}.
+  					
 
-\begin{itemize}
-  \item NSDL is promoted byIndustrial Development Bank of India Limited(IDBI) - the largest development bank of India.
-\item NSDLis an Indian central securities depository.
+				\end{itemize}
 
-\end{itemize}
-\vskip 1cm
+			\end{frame}
 
-\end{frame}
+%%%%%%%%%%%%%%%
 
+	\section{Aplicaciones}
+
+	
+		\begin{frame}{Aplicaciones}
+ 			\begin{itemize}
+			
+  				\item Secuenciación del ADN.
+  			
+				\item Software de control de versiones (git).
+  					
+				\item Comando diff.
+
+			\end{itemize}
+		\end{frame}
+			
+%%%%%%%%%%%%%%%
+
+
+	\section{Programación Dinámica}
+
+	
+		\begin{frame}{Programación Dinámica}
+ 			\begin{itemize}
+			
+  				\item Patrón de diseño de algoritmos basado en la división del problema base en subproblemas de menor tamaño y complejidad que solo se resolverán una única vez.
+  			
+				\item Solapamiento de Problemas.
+  					
+				\item Subestructura Óptima.
+
+			\end{itemize}
+		\end{frame}
+	
+		\begin{frame}{Solapamiento de Problemas}
+ 			\begin{itemize}
+			
+  				\item Un problema tiene esta propiedad si se puede dividir en subproblemas de menor tamaño cuyos resultados se reutilizarán para resolver sucesivos subproblemas de nivel superior.
+  			
+				\item Ejemplo: Sucesión de Fibonacci.
+  					
+			\end{itemize}
+		\end{frame}
+		
+		\begin{frame}{Subestructura Óptima}
+ 			\begin{itemize}
+			
+  				\item La solución óptima del problema contiene (o depende) de las soluciones óptimas a sus subproblemas..
+
+			\end{itemize}
+		\end{frame}
+			
+%%%%%%%%%%%%%%%
+
+	\section{Subsecuencia Común más larga}
+
+		\subsection{Enfoques Disponibles}
+	
+			\begin{frame}{Enfoques Disponibles}
+ 			
+				\begin{itemize}
+			
+					\item N = número de secuencias.
+				
+					\item $n_{i} $ = Secuencia i-ésima.
+
+  					\item Boráz: $O(2^{n_{1}}\sum_{i = 2}^{N}n_{i})$.
+  			
+					\item Programación Dinámica: $O(N\prod_{i = 1}^{N}n_{i})$.
+  					
+				\end{itemize}
+			
+			\end{frame}
+
+		\subsection{Enfoque dinámico}
+		
+			
+%%%%%%%%%%%%%%%%
+				\begin{frame}{Notación Utilizada}
+ 			
+					\begin{itemize}
+			
+						\item Se expondrá el caso de dos secuencias.
+
+						\item $X[0...m-1]$ e $Y[0...n-1]$  secuencias de longitud m y n respectivamente. 	
+				
+						\item L[0...m][0...n] matriz de tamaño m x n, para almacenar los resultados de cada subproblema
+  					
+						\item Sea $S$ una secuencia de longitud $l$  e $i \in (1, l)$, entonces $S_{i}$ es la correspondiente a los $i$ primeros elementos. 
+			\newline{}
+			Ejemplo: $X = abcde$
+			\newline{}
+			$X_{1} = a$, $X_{3} = abc$ y $X_{5} = abcde = X$
+					\end{itemize}
+			
+				\end{frame}			
 
 %%%%%%%%%%%%%%%%
+			
+				\begin{frame}{Fórmula}
+ 			
+					\[
+			 		LCS( X_{i}, Y_{j} ) =
+						\begin{cases}
+				    			0									& \text{if } i = 0 \vee	 j = 0\\
+    							LCS( X_{i-1}, Y_{j-1}) + 1					& \text{if } x_{i} = y_{j}\\
+    							max(LCS( X_{i}, Y_{j-1}), LCS( X_{i-1}, Y_{j}))	& \text{if } x_{i} \not = y_{j}
+						\end{cases}
+					\]
+			
+				\end{frame}
 
-\section{Benefits}
+				\begin{frame}{Funcionamiento}
+ 			
+					\begin{itemize}
+			
+						\item Rellenar matriz L a partir de función LCS.
+				
+						\item Recorrer L desde $L_{m-1n-1}$ hasta $L_{00}$.
+  					
+					\end{itemize}	
+					
+				\end{frame}
+				
+				\begin{frame}{Ejemplo de funcionamiento 1}
+ 			
+					\begin{itemize}
+			
+						\item X = abcde, m = 5
+				
+						\item Y = aert, n = 4
+  					
+					\end{itemize}	
+					
+				\end{frame}
+				
+				\begin{frame}{Ejemplo de funcionamiento 2}
+ 			
+\begin{center}
+	    		\(
+	  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ &   &   &    &    &   &    \\ \hline
+					a &   &   &    &    &    &    \\ \hline
+					e &   &   &    &    &    &   \\ \hline
+					r &   &   &    &    &    &   \\ \hline
+					t &   &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+	  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 &   &    &    &    &    \\ \hline
+					e & 0 &   &    &    &    &   \\ \hline
+					r & 0 &   &    &    &    &   \\ \hline
+					t & 0  &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+	  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 &    &    &    &    \\ \hline
+					e & 0 &   &    &    &    &   \\ \hline
+					r & 0 &   &    &    &    &   \\ \hline
+					t & 0  &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1   &    &    &    \\ \hline
+					e & 0 &   &    &    &    &   \\ \hline
+					r & 0 &   &    &    &    &   \\ \hline
+					t & 0  &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+		    	\)
+			\end{center}	
+					
+				\end{frame}
 
-\begin{frame}{Benefits}
+				\begin{frame}{Ejemplo de funcionamiento 3}
+ 			
+\begin{center}
+	    		\(
+	  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 &    &    &    &   \\ \hline
+					r & 0 &   &    &    &    &   \\ \hline
+					t & 0  &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					r & 0 &   &    &    &    &   \\ \hline
+					t & 0  &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					t & 0  &   &    &    &   &    \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & 2 \\
+					\hline
+				\end{tabular}
+		    	\)
+			\end{center}	
+					
+				\end{frame}	
+				
+\begin{frame}{Ejemplo de funcionamiento 4}
+ 			
+\begin{center}
+	    		\(
+	  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & 2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & 1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & 1 & 1 & 1 & \cellcolor{blue!25}1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+					\hline
+				\end{tabular}
+		    	\)
+			\end{center}	
+					
+				\end{frame}	
+				
+				
+\begin{frame}{Ejemplo de funcionamiento 5}
+ 			
+\begin{center}
+	    		\(
+	  			\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & 0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+					\hline
+				\end{tabular}
+			    \)
+	    		\hspace{.1in}
+	    		\(
+				\begin{tabular}{ | c | c | c | c | c | c | c | }
+	    				\hline
+					   & $\emptyset$ & a & b  & c  & d & e \\ \hline
+					$\emptyset$ & \cellcolor{blue!25}0 & 0 & 0  & 0  & 0 & 0  \\ \hline
+					a & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & 1 \\ \hline
+					e & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!50}2 \\ \hline
+					r & 0 & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\ \hline
+					t & 0  & 1 & 1 & 1 & 1 & \cellcolor{blue!25}2 \\
+					\hline
+				\end{tabular}
+		    	\)
+			\end{center}	
+					
+				\end{frame}
+				
+				\begin{frame}{Ejemplo de funcionamiento 6}
+ 			
+					\begin{itemize}
+			
+						\item  Para las secuencias $ X = abcde$, $ Y = aert$ el resultado es:
+						\item LCS = ae de longitud 2
+  					
+					\end{itemize}	
+					
+				\end{frame}	
+%%%%%%%%%%%%%%%
 
-\begin{block}{From customer’s point of view}
-\end{block}
-\begin{itemize}
-
-%\end{}{itemize}
-\item Ease of access : Tax payers can track online the status of their challans deposited in banks
-\item Secure
-  \item Check present status of challan
-  \item Get Confirmation
-
-\end{itemize}
-
-\begin{block}{From Bank’s point of view}
-\end{block}
-\begin{itemize}
-
-%\end{}{itemize}
-\item Provide multiple services
-\item Make Business
-\item Increase Brand Value
-\end{itemize}
-
-\vskip 1cm
-\end{frame}
-
-%---------------------
-\section{References}
-\begin{frame}
-\frametitle{References}
-\begin{itemize}
-\item \url{https://nsdl.co.in/about/why.php/}
-\item \url{http://deic.uab.es/~iblanes/beamer_gallery/} \\
-\item \url{http://www.idbi.com/online-tax-payment.asp} \\
-\end{itemize}
+				\begin{frame}{Error encontrado}
+ 			
+					\begin{figure}
+						\includegraphics[width=8cm]{../res/imagen.png}
+					\caption{}
+										
+					\end{figure}
+				\end{frame}
+				
+				\begin{frame}{Error encontrado}
+ 			
+				
+					\begin{figure}
+						\includegraphics[width=8cm]{../res/imagen_correct.png}
+					\caption{}
+					
+					\end{figure}
+				\end{frame}
 
 
-\begin{block}{E-Books}
-\begin{itemize}
 
-%\end{}{itemize}
-\item Programming ASP.NET 3.5 
-\item The Indian Financial System: Markets, Institutions and Services
-\end{itemize}
-\end{block}
-\vskip 1cm
-\end{frame}
+\section{Fin}
 
-
-\section{End of Presentation}
-\begin{frame}
-\begin{itemize}[<+-| alert@+>]
-\item Thank You.
-\end{itemize}
-\end{frame}
 
 \end{document}
-
