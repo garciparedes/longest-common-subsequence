@@ -5,16 +5,22 @@
  */
 package main;
 
+import javax.swing.UIManager;
 import view.View;
 
 /**
- *
+ * It class initializes the application.
+ * 
  * @author garciparedes
  */
 public class Main {
 
     
     /**
+     * Main method.
+     * 
+     * It starts the graphic interface.
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -24,12 +30,9 @@ public class Main {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel(
+                UIManager.getSystemLookAndFeelClassName());
+            
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {

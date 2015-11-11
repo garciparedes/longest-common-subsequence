@@ -19,7 +19,10 @@ import javax.swing.JFileChooser;
 import view.View;
 
 /**
- *
+ * Controller class.
+ * 
+ * It connects the model with the View
+ * 
  * @author garciparedes
  */
 public class Controller {
@@ -28,12 +31,28 @@ public class Controller {
     private String fileLeft;
     private String fileRight;
     
+    /**
+     * Constructor of Controller.
+     * 
+     * Initializes the object and assigns the View as attribute.
+     * Also initializes fileLeft and fileRight
+     * 
+     * @param view 
+     */
     public Controller(View view){
         this.view = view;
         this.fileLeft = "";
         this.fileRight = "";
     }
     
+    
+    /**
+     * loadFileLeft method.
+     * 
+     * It calls <code>readFile()</code> method 
+     * and assigns it return to fileLeft
+     * attribute, so it acts as fileLeft's setter.
+     */
     public void loadFileLeft(){
         try {
             fileLeft = readFile();
@@ -44,6 +63,15 @@ public class Controller {
         update();
     }
     
+    
+    
+    /**
+     * loadFileRight method.
+     * 
+     * It calls <code>readFile()</code> method 
+     * and assigns it return to fileRight
+     * attribute, so it acts as fileRight's setter.
+     */
     public void loadFileRight(){
         try {
             fileRight = readFile();
@@ -54,6 +82,12 @@ public class Controller {
         update();
     }
     
+    
+    /**
+     * update method.
+     * 
+     * It updates graphic interface with LCS algorithm results.
+     */
     public void update(){
         
         String[] fileLeftLines = fileLeft.split("\\r?\\n");
@@ -73,19 +107,34 @@ public class Controller {
     }
     
     
-    private int[][] lcs(){
-        String[] fileLeftLines = fileLeft.split("\\r?\\n");
-        String[] fileRightLines = fileRight.split("\\r?\\n");
-        return LCS.lcsPositions(fileLeftLines, fileRightLines);
-    }
-    
-    
+    /**
+     * readFile function.
+     * 
+     * It method reads the file.
+     * 
+     * @param path File's route.
+     * @param encoding File's encoding.
+     * 
+     * @return Content of file.
+     * 
+     * @throws IOException 
+     */
     private static String readFile(String path, Charset encoding)
             throws IOException { 
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
     }
 
+        /**
+     * readFile function.
+     * 
+     * It method reads the file opens 
+     * new windows to select file to read.
+     * 
+     * @return Content of file.
+     * 
+     * @throws IOException 
+     */
     private String readFile()
             throws IOException {
         JFileChooser file=new JFileChooser(".");
@@ -93,12 +142,34 @@ public class Controller {
         return readFile(file.getSelectedFile().getAbsolutePath());
     }
     
+    
+    /**
+     * readFile function.
+     * 
+     * It method reads the file.
+     * 
+     * @param path File's route.
+     * 
+     * @return Content of file.
+     * 
+     * @throws IOException 
+     */
     private static String readFile(String path)
             throws IOException {
         return readFile(path, Charset.defaultCharset());
     }
    
     
+    /**
+     * Inverse function.
+     * 
+     * It method calculates the inverse of 
+     * input set from complete <code>size</code> set.
+     * 
+     * @param elements Set to inverse.
+     * @param size Size of global set.
+     * @return Integer array containing the inverse of input set.
+     */
     public static int[] inverse(int[] elements, int size){
         ArrayList<Integer> inverseList = new ArrayList<>(size);
         for(int i = 0; i < size; i++){

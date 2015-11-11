@@ -9,17 +9,34 @@ import controller.Controller;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.Highlighter;
+import javax.swing.text.Highlighter.HighlightPainter;
+
 
 /**
- *
+ * View Class.
+ * 
+ * It represents the graphic interface in the system.
+ * 
  * @author garciparedes
  */
 public class View extends javax.swing.JFrame {
-
-    private Controller controller;
+    
+    private static final HighlightPainter redHighLight = new DefaultHighlightPainter(new Color(240, 101, 55));
+    private static final HighlightPainter greenHighLight = new DefaultHighlightPainter(new Color(192, 216, 144));
+     
+    
+    private TextLineNumber textLineNumberLeft;
+    private TextLineNumber textLineNumberRight;
+    
+    private final Controller controller;
+    
+    
+    
     /**
      * Creates new form View
      */
@@ -29,6 +46,8 @@ public class View extends javax.swing.JFrame {
         myInitComponents();
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,7 +97,7 @@ public class View extends javax.swing.JFrame {
         });
         jToolBar.add(jButtonLoadFile2);
 
-        jLayeredPanelGrid.setLayout(new java.awt.GridLayout());
+        jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextAreaLeft.setEditable(false);
         jTextAreaLeft.setColumns(20);
@@ -96,7 +115,6 @@ public class View extends javax.swing.JFrame {
 
         jLabelLCS.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabelLCS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLCS.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,17 +134,31 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLCS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    /**
+     * jButtonLoadFile1ActionPerformed method.
+     * Is called when jButtonLoadFile1 is pressed.
+     * @param evt 
+     */
     private void jButtonLoadFile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadFile1ActionPerformed
         controller.loadFileLeft();
     }//GEN-LAST:event_jButtonLoadFile1ActionPerformed
 
+    
+    
+    /**
+     * jButtonLoadFile2ActionPerformed method.
+     * Is called when jButtonLoadFile2 is pressed.
+     * @param evt 
+     */
     private void jButtonLoadFile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoadFile2ActionPerformed
         controller.loadFileRight();
     }//GEN-LAST:event_jButtonLoadFile2ActionPerformed
@@ -142,14 +174,14 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaRight;
     private javax.swing.JToolBar jToolBar;
     // End of variables declaration//GEN-END:variables
-    
-    private TextLineNumber textLineNumberLeft;
-    private TextLineNumber textLineNumberRight;
+
     
 
-    private static final Highlighter.HighlightPainter redPainter = new DefaultHighlighter.DefaultHighlightPainter(new Color(240, 101, 55));
-    private static final Highlighter.HighlightPainter greenHighLight = new DefaultHighlighter.DefaultHighlightPainter(new Color(192, 216, 144));
-
+    /**
+     * myInitComponents method.
+     * 
+     * It initializes custom attributes.
+     */
     private void myInitComponents() {        
         setLocationRelativeTo(null);
         textLineNumberLeft = new TextLineNumber(jTextAreaLeft);
@@ -161,30 +193,77 @@ public class View extends javax.swing.JFrame {
     }
     
     
+    
+    /**
+     * Setter of JTextAreaLeft.
+     * 
+     * @param text text to introduce.
+     */
     public void setJTextAreaLeftText(String text){
         jTextAreaLeft.setText(text);
     }
 
     
+    
+    /**
+     * Setter of JTextAreaRight.
+     * 
+     * @param text text to introduce.
+     */
     public void setJTextAreaRightText(String text) {
         jTextAreaRight.setText(text);
     }
     
+    
+    
+    /**
+     * Setter of JLabelLCS.
+     * 
+     * @param text text to introduce.
+     */
     public void setJLabelLCS(String text) {
         jLabelLCS.setText(text);
     }
     
-    public void colorJTextAreaLeftText(int[] lines, int[] redLines) {
-        colorJTextAreatText(jTextAreaLeft, lines, redLines);
+    
+    /**
+     * colorJTextAreaLeftText method.
+     * 
+     * It method HighLights the text of <code>JTextAreaLeft</code>
+     * to green and red by lines.
+     * 
+     * @param greenLines Lines to HighLight to green.
+     * @param redLines Lines to HighLight to red.
+     */
+    public void colorJTextAreaLeftText(int[] greenLines, int[] redLines) {
+        colorJTextAreatText(jTextAreaLeft, greenLines, redLines);
     }
     
     
+    /**
+     * colorJTextAreaRightText method.
+     * 
+     * It method HighLights the text of <code>JTextAreaRight</code>
+     * to green and red by lines.
+     * 
+     * @param greenLines Lines to HighLight to green.
+     * @param redLines Lines to HighLight to red.
+     */
     public void colorJTextAreaRightText(int[] greenLines, int[] redLines) {
         colorJTextAreatText(jTextAreaRight, greenLines, redLines);
     }
     
-    
-    public static void colorJTextAreatText(javax.swing.JTextArea jTextArea
+    /**
+     * colorJTextAreaRightText method.
+     * 
+     * It method HighLights the text of input jTextArea
+     * to green and red by lines.
+     * 
+     * @param jTextArea TextAre to apply the HighLight.
+     * @param greenLines Lines to HighLight to green.
+     * @param redLines Lines to HighLight to red.
+     */
+    public static void colorJTextAreatText(JTextArea jTextArea
             , int[] greenLines, int[] redLines){
         int a,b;
         try {
@@ -199,7 +278,7 @@ public class View extends javax.swing.JFrame {
             for(int i = 0; i < redLines.length; i++){
                 a = jTextArea.getLineStartOffset(redLines[i]);
                 b = jTextArea.getLineEndOffset(redLines[i]);
-                jTextArea.getHighlighter().addHighlight(a, b, redPainter);
+                jTextArea.getHighlighter().addHighlight(a, b, redHighLight);
             }
            
         } catch (BadLocationException ex) {
