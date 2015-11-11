@@ -52,7 +52,7 @@
 		El problema analizado que se pretende resolver consiste en lo siguiente:
 
 		\paragraph{}
-		Primeramente describiremos lo que es una secuencia para después explicar el significado de subsecuencia, ya que es una de las ideas fundamentales que habrá que tener claro para entender los requisitos del problema, que no debemos confundir con el concepto de  subcadena.
+		Primeramente describiremos el concepto secuencia para después explicar a qué nos referimos con subsecuencia, ya que es una de las ideas fundamentales que habrá que tener claras para entender las especificaciones que se nos piden para resolver el problema.
 
 		\paragraph{Secuencia:}
 		Es una colección ordenada de elementos en la cual la repetición está permitida.
@@ -60,7 +60,7 @@
 		Ejemplo: {A, B, C, A, E, F}
 
 		\paragraph{Subsecuencia:}
-		Es una secuencia que se obtiene a partir de otra secuencia de igual o mayor longitud mediante la supresión de algunos elementos manteniendo el orden de los elementos restantes. Por ejemplo, la secuencia A, C, A es una subsecuencia de A, B, C, A, E, F.
+		Es una secuencia que se obtiene a partir de otra de igual o mayor longitud mediante la supresión de algunos elementos manteniendo el orden de los elementos restantes. Por ejemplo, la secuencia A, C, A es una subsecuencia de A, B, C, A, E, F.
 		\newline
 		No debe confundirse con el término subcadena, que además impone la restricción de que los elementos han de ser contiguos. Un ejemplo de subcadena es  C, A, E.
 
@@ -73,18 +73,18 @@
 	\subsection{Aplicaciones}
 	
 		\paragraph{}
-		Este algoritmo tiene una gran cantidad de aplicaciones. Uno de los sectores donde su uso está más extendido es en el de la informática: se usa en software de control de versiones como \textbf{git} o en el comando \textbf{diff} de linux, que muestra las diferencias entre ficheros. También se utiliza en el sector de la bioinformática (Aplicación de la tecnología de computadores a la gestión y análisis de datos biológicos.) para \textbf{secuenciación de ADN}.
+		Este algoritmo tiene una gran cantidad de aplicaciones. Uno de los sectores donde su uso está más extendido es en el de la informática: se usa en software de control de versiones como \textbf{git} y en el comando \textbf{diff} de linux, que muestra las diferencias entre ficheros. También se utiliza en el sector de la bioinformática (Aplicación de la tecnología de computadores a la gestión y análisis de datos biológicos.) para \textbf{secuenciación de ADN}.
 
 \section{Programación Dinámica}
 
 	\subsection{Definición}
 	
 		\paragraph{}
-		La programación dinámica es un patrón de diseño de algoritmos basado en la división del problema base en subproblemas de menor tamaño y complejidad que solo se resolverán una única vez, ya que se almacenará la solución de cada uno de ellos para luego reutilizarlo en el caso de que fuera necesario. Al proceso de almacenar las soluciones de los subproblemas se lo denomina \textbf{memoization}. Para que un problema pueda ser resuelto mediante programación dinámica este tiene que cumplir dos propiedades: solapamiento de los subproblemas y subestructura óptima.
+		La programación dinámica es un patrón de diseño de algoritmos basado en la división del problema base en subproblemas de menor tamaño y complejidad que se resolverán una única vez, ya que se almacenará la solución de cada uno de ellos para luego reutilizarlo en el caso de que fuera necesario. Al proceso de almacenar las soluciones de los subproblemas se lo denomina \textbf{memoization}. Para que un problema pueda ser resuelto mediante programación dinámica tiene que cumplir dos propiedades: solapamiento de los subproblemas y subestructura óptima.
 
 	\subsection{Solapamiento de Problemas}
 		\paragraph{}
-		Se dice que un problema tiene esta propiedad si este se puede subdividir en problemas de menor tamaño cuyos resultados se pueden reutilizar para resolver sucesivos subproblemas. El ejemplo más claro de esta propiedad es la Sucesión de Fibonacci, que se define como:
+		Se dice que un problema tiene esta propiedad si se puede subdividir en problemas de menor tamaño cuyos resultados se pueden reutilizar para resolver sucesivos subproblemas que lo contienen. El ejemplo típico de esta propiedad es la Sucesión de Fibonacci, que se define como:
 
 		\[
    		 F(n)=
@@ -95,7 +95,7 @@
 		\]
 
 		\paragraph{}
-		Gráficamente esto se puede representar como un arbol binario, en el cual, para calcular un nodo, tenemos que recurrir a los resultados de sus dos hijos, y así sucesivamente hasta llegar a tener como hijos$F(0), F(1)$, que son nuestros casos base:
+		Gráficamente esto se puede representar como un árbol binario, en el cual, para calcular un nodo, tenemos que recurrir a los resultados de sus dos hijos, y así recursivamente hasta llegar a tener como hijos$F(0), F(1)$, que son nuestros casos base:
 
 		\begin{figure}[H]
 				\centering
@@ -113,7 +113,7 @@
 	\subsection{Enfoques Disponibles}
 	
 		\paragraph{}
-		Para resolver el problema de encontrar la subsecuencia común más larga entre $N[n_{1}...n_{n}]$ secuencias existen distintos enfoques:
+		Para encontrar la subsecuencia común más larga entre $N[n_{1}...n_{n}]$ secuencias existen distintos enfoques:
 
 		\paragraph{}
 		 Primeramente podríamos pensar en un enfoque por fuerza bruta, es decir, comparando todas las subsecuencias posibles. Esto tendría un crecimiento asintótico de $O(2^{n_{1}}\sum_{i = 2}^{N}n_{i})$ que corresponde al coste de obtener todas las subsecuencias de la primera secuencia $O(2^{n_{1}})$ y compararlo con todas las demás  (sumatorio de todas las restantes), es decir, de compararlas todas con todas.
@@ -132,7 +132,7 @@
 		\subsubsection{Notación}
 
 			\paragraph{}
-			Denominaremos a las dos secuencias $X[0...m-1]$ e $Y[0...n-1]$ cuya longitud será m y n respectivamente. 		
+			Denominaremos a las dos secuencias $X[0...m-1]$ e $Y[0...n-1]$, cuya longitud será m y n respectivamente.  Sean $i \in (0, m-1)$ y $j \in (0, n-1)$
 			\newline{}
 			A modo de ejemplo supondremos $X = abcde, Y = aert$ por lo que $m = 5, n = 4$.
 			
@@ -147,9 +147,9 @@
 		\subsubsection{Subestructura óptima}
 
 			\paragraph{}
-			En el caso de que X[m-1] sea igual a Y[n-1] (las últimas posiciones de cada secuencia), rellenaremos la matriz L con el valor de las secuencias sin esos últimos elementos + 1 (el elemento común encontrado):
+			En el caso de que X[m-i] sea igual a Y[n-j] (las últimas posiciones de cada secuencia), rellenaremos la matriz L con el valor de las secuencias sin esos últimos elementos + 1 (el elemento común encontrado):
 			\[
-			L(X[0..m-1], Y[0..n-1]) = 1 + L(X[0..m-2], Y[0..n-2])
+			L(X[0..m-i], Y[0..n-j]) = 1 + L(X[0..m-1-i], Y[0..n-1-j])
 			\]
 			\newline{}
 			Ejemplo:
@@ -158,9 +158,9 @@
 			\]
 
 			\paragraph{}
-			Por contra, si los dos últimos elementos no fueran iguales, es decir, si X[m-1] fuese distinto de Y[n-1] tendríamos que obtener el máximo de eliminar el último carácter de la primera secuencia y de la segunda, es decir:
+			Por contra, si los dos últimos elementos no fueran iguales, es decir, si X[m-i] fuese distinto de Y[n-1] tendríamos que obtener el máximo de eliminar el último carácter de la primera secuencia y de la segunda, es decir:
 			\[
-			L(X[0..m-1], Y[0..n-1]) = max(L(X[0..m-2], Y[0..n-1]), L(X[0..m-1], Y[0..n-2])
+			L(X[0..m-i], Y[0..n-j]) = max(L(X[0..m-1-i], Y[0..n-j]), L(X[0..m-i], Y[0..n-1-j])
 			\]
 			\newline{}
 			Ejemplo:
@@ -185,7 +185,7 @@
 		\subsubsection{Solapamiento de problemas}
 
 			\paragraph{}
-			Como se puede apreciar, el resultado  de cada subproblema se reutiliza para obtener el de los de nivel superior. Por tanto podemos almacenar el resultado para calcularlo una única vez al igual que en el caso de la Sucesión de Fibonacci..
+			Como se puede apreciar, el resultado  de cada subproblema se reutiliza para obtener el de los de nivel superior. Por tanto podemos almacenar el resultado para calcularlo una única vez al igual que en el caso de la Sucesión de Fibonacci.
 
 		\subsubsection{Obtención de los resultados}
 		
@@ -470,7 +470,7 @@
 				\Comment{O(1)}
 		
 				\While{$i > 0 \wedge j > 0$}
-						\Comment{$O(max(n,m))$}
+						\Comment{$O(n+m)$}
 				
 					\If{$X[i-1] = Y[j-1]$}
 					\Comment{O(1)}
@@ -515,11 +515,11 @@
 
 	\subsection{Análisis asintótico}
 		\paragraph{}
-		Como vemos, el orden de crecimiento de la función depende de la longitud de las secuencias de entrada, es decir, del coste de recorrer la matriz $L$
+		Como vemos, el orden de crecimiento asintótico de la función depende de la longitud de las secuencias de entrada, es decir, del coste de rellenar y recorrer la matriz $L$. El analisis sobre el crecimiento se ha hecho a partir del peor caso.
 		\[
-		T(n) = O(lenX*lenY) + O(\frac{lenX+lenY}{2}) = O(lenX*lenY)
+		T(n) = O(lenX*lenY) + O(m+n) = O(lenX*lenY)
 		\]
-		Con esto llegamos a la conclusión de que este algoritmo tienen un coste de $O(n^2)$
+		Con esto llegamos a la conclusión de que este algoritmo tienen un coste de $O(n^2)$ si suponemos que las dos secuencias de entrada tienen la misma longitud.
 		
 	\section{Referencia Bibliográfica}
 
