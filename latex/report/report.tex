@@ -190,7 +190,7 @@
 		\subsubsection{Obtención de los resultados}
 		
 			\paragraph{}
-			Para obtener la longitud de la subsecuencia común más larga tan solo tendremos que obtener el valor de $L_{mn}$. Este valor se encuentra en esa posición dado que es la última entrada de la matriz que se rellena, es decir, el corresponde a las secuencias completas.
+			Para obtener la longitud de la subsecuencia común más larga tan solo tenemos que obtener el valor de la entrada $L_{mn}$. Este valor se encuentra en esa entrada dado que es la última que se rellena, es decir, el correspondiente a las secuencias completas.
 
 			\paragraph{}
 			Para obtener la subsecuencia común más larga el proceso es algo más complicado. A grandes rasgos consiste en comenzar en la entrada $L_{mn}$ e ir decrementando los valores de $i$ y $j$ añadiendo a la secuencia el elemento correspondiente a dicha posición en el caso de que $ X_{i} = Y_{j}$ o en caso contrario decrementar $i$ o $j$ según sea mayor $X_{i}$ o  $Y_{j}$ hasta que $i = 0$ o $j = 0$. La secuencia resultante será la subsecuencia común más larga.
@@ -206,7 +206,7 @@
 			\paragraph{}
 			Lo primero que haremos es aplicar el algoritmo para generar la matriz $L$.
 			\newline{Nota:}
-			Para mejorar la eficiencia del algoritmo aumentamos en 1 el tamaño de la matriz, es decir, $L[0...m][0...n]$ para añadir 0 en las entradas $L_{ij}$ tales que $i = 0$ o $j = 0$, lo que reduce el número de comprobaciones respecto de los límites de la lista.
+			Para mejorar la eficiencia del algoritmo aumentamos en 1 el tamaño de la matriz, es decir, $L[0...m][0...n]$ para añadir 0 en las entradas $L_{ij}$ tales que $i = 0$ o $j = 0$, lo que reduce el número de comprobaciones respecto de los límites de la matriz.
 
 			\begin{center}
 	    		\(

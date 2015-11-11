@@ -2,15 +2,37 @@
 #!/usr/bin/env python
 
 '''
-Author: Sergio Garcia Prado
-        www.garciparedes.me
+LCS example 
 '''
+__author__ =  'Sergio García Prado'
+__version__=  '1.0'
 
 def max(a, b):
     return a if (a > b) else b
 
 
 def lcs(X, Y, m, n):
+    """
+    LCS Algorithm
+
+    The Algorithm returns the Longest Common Subsequence of X and Y.
+
+    @type  X: list
+    @param X: The First Sequence.
+
+    @type  Y: list
+    @param Y: The Second Sequence.
+
+    @type  m: number
+    @param m: Len of First Sequence.
+
+    @type  X: number
+    @param X: Len of Second Sequence.
+
+    @rtype:   list
+    @return:  the Longest Common Subsequence of two input Sequences.
+    """
+
     L = [[0 for col in range(n+1)] for row in range(m+1)]
 
     for i in range(1, m+1):
@@ -41,6 +63,17 @@ def lcs(X, Y, m, n):
 
 
 def main():
+    """
+    Main method.
+
+    It initializes the app. Also acts as IO.
+
+    If input is none it uses
+    ACCGGTGGACAATTCA as X and
+    GGAAAGAGATATGCAC as Y
+
+    Then rerurn LCS of it.
+    """
     X = "ACCGGTGGACAATTCA";
     Y = "GGAAAGAGATATGCAC";
 

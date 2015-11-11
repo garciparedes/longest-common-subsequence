@@ -9,13 +9,18 @@ import javax.swing.UIManager;
 import view.View;
 
 /**
- *
+ * It class initializes the application.
+ * 
  * @author garciparedes
  */
 public class Main {
 
     
     /**
+     * Main method.
+     * 
+     * It starts the graphic interface.
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

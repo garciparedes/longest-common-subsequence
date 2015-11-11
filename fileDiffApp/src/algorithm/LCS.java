@@ -24,9 +24,8 @@ public class LCS{
      * @param <E> Type of elements.
      * @param X First sequence of elements.
      * @param Y Second sequence of elements.
-     * @return 1-dimensional array of integers containing
-     * the positions of Longest Common Subsequence at Second
-     * Sequence.
+     * @return 2-dimensional array of integers containing
+     * the positions of Longest Common Subsequence at inputs
      */
     public static <E> int[][] lcsPositions(E[] X, E[] Y){
         int m = X.length, n = Y.length;
