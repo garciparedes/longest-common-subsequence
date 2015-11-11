@@ -44,19 +44,25 @@ def main():
     X = "ACCGGTGGACAATTCA";
     Y = "GGAAAGAGATATGCAC";
 
+    Xinput = raw_input('Introduzca la primera secuencia:')
+    Yinput = raw_input('Introduzca la segunda secuencia:')
+
+    if(Xinput != ""):
+    	X = Xinput
+
+	if(Yinput != ""):
+		Y = Yinput
+
     m = len(X);
     n = len(Y);
-    print "\n"
 
-    print X
-    print ""
-    print Y
-    print "\n"
+    print "La primera secuencia es: %s" % (X)
+
+    print "La segunda secuencia es: %s" % (Y)
 
     l = lcs( X, Y, m, n )
 
-    print"LCS is %s and it length is %s" % (l, len(l) )
-    print ""
+    print"LCS es '%s' y su longitud es %s" % (l, len(l) )
 
 if __name__ == "__main__":
     main()
