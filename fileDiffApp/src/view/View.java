@@ -78,7 +78,7 @@ public class View extends javax.swing.JFrame {
         });
         jToolBar.add(jButtonLoadFile2);
 
-        jLayeredPanelGrid.setLayout(new java.awt.GridLayout());
+        jLayeredPanelGrid.setLayout(new java.awt.GridLayout(1, 0));
 
         jTextAreaLeft.setEditable(false);
         jTextAreaLeft.setColumns(20);
@@ -96,7 +96,6 @@ public class View extends javax.swing.JFrame {
 
         jLabelLCS.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabelLCS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelLCS.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,7 +115,7 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelLCS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+                .addComponent(jLayeredPanelGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
